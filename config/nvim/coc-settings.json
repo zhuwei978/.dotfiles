@@ -1,0 +1,27 @@
+{
+    "eslint.autoFixOnSave": true,
+    "diagnostic.errorSign": ">>",
+    "diagnostic.warningSign": "!",
+    "diagnostic.infoSign": "?",
+    "suggest.snippetIndicator": "~",
+    "suggest.noselect": false,
+    "suggest.enablePreview": true,
+    "snippets.extends": {
+        "less": ["css"]
+    },
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "json",
+        "graphql",
+        "less",
+        "css",
+        "html",
+        "markdown",
+        "vue",
+        "go"
+    ]
+}
