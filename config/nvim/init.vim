@@ -126,6 +126,9 @@ function! LightlineGitFileChange() abort
   return winwidth(0) > 120 ? git_status : ''
 endfunction
 
+" for go auto-import when saving
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+
 autocmd bufnewfile,bufread *.ts set filetype=typescript.tsx
 autocmd bufnewfile,bufread *.js set filetype=javascript.jsx
 autocmd User CocStatusChange,CocDiagnosticChange,CocGitStatusChange call lightline#update()
