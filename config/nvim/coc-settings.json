@@ -3,16 +3,6 @@
   "diagnostic.errorSign": ">>",
   "diagnostic.warningSign": "!",
   "diagnostic.infoSign": "?",
-  "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"],
-      "initializationOptions": {
-        "usePlaceholders": true
-      }
-    }
-  },
   "suggest.snippetIndicator": "~",
   "suggest.noselect": false,
   "suggest.enablePreview": true,
