@@ -59,7 +59,7 @@ nnoremap <silent> N Nzz
 " file operaion
 nnoremap <LEADER>w :w<CR>
 nnoremap <LEADER>q :q<CR>
-inoremap jk <Esc>
+
 " open vimrc
 nnoremap <silent> <LEADER>rc :tabe ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <LEADER>re :so %<CR>:noh<CR>
@@ -170,6 +170,8 @@ endfunction
 
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
+" Format the whole buffer
+command! -nargs=0 Format :call CocAction('format')
 " Remap for rename current word
 nmap <F2> <Plug>(coc-rename)
 
