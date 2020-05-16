@@ -20,11 +20,14 @@ Plug 'mhartington/oceanic-next'
 call plug#end()
 
 let mapleader = ' '
+let g:python3_host_prog='/usr/local/bin/python3'
 
 filetype plugin indent on
 syntax on
 set termguicolors
 colorscheme gruvbox
+set cursorline
+set lazyredraw
 set background=dark
 set noswapfile                 " 禁止生成临时文件
 set nowrap
