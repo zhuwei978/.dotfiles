@@ -23,6 +23,7 @@ Plug 'digitaltoad/vim-pug'
 " markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'mzlogin/vim-markdown-toc'
+Plug 'dhruvasagar/vim-table-mode'
 " theme
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
