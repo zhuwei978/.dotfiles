@@ -43,7 +43,6 @@ filetype plugin indent on
 syntax on
 set termguicolors
 colorscheme gruvbox
-set cursorline
 set lazyredraw
 set background=dark
 set noswapfile                 " 禁止生成临时文件
@@ -85,28 +84,15 @@ nnoremap <silent> <LEADER>rc :tabe ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <LEADER>re :so %<CR>:noh<CR>
 " work with coc-pairs for inserting new line and indent properly
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
 " Use <tab> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 " <tab> could be remapped by other vim plugin, try `:verbose imap <tab>`.
 if exists('*complete_info')
   inoremap <expr> <tab> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<tab>"
 else
-  inoremap <expr> <tab> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+  inoremap <expr> <tab> pumvisible() ? "\<C-y>" : "\<C-g>u\<tab>"
 endif
-
-" Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
 
 " FZF
 let g:fzf_command_prefix = 'Fzf'
