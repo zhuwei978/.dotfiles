@@ -1,4 +1,11 @@
 set nocompatible
+" automatically installing vim-plug and relative plugins when vim-plug has not
+" been installed
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 call plug#begin('~/.local/share/nvim/plugged')
 " other
 Plug 'tpope/vim-surround'
@@ -13,11 +20,20 @@ Plug 'herringtondarkholme/yats.vim'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'digitaltoad/vim-pug'
+" markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'mzlogin/vim-markdown-toc'
 " theme
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 call plug#end()
+
+" Automatically install missing plugins on startup
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
 
 let mapleader = ' '
 let g:python3_host_prog='/usr/local/bin/python3'
