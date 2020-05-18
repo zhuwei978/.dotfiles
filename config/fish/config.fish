@@ -14,3 +14,21 @@ if not functions -q fisher
     curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
     fish -c fisher
 end
+
+# abbreviations
+if status --is-interactive
+    abbr -a -g gst git status
+    abbr -a -g gco git checkout
+    abbr -a -g gb git branch
+    abbr -a -g ga git add
+    abbr -a -g gaa git add .
+    abbr -a -g gc git commit -m
+    abbr -a -g gp git push
+    abbr -a -g gl git pull
+    abbr -a -g gd git diff
+    abbr -a -g gs git stash
+    abbr -a -g gcm git checkout master
+    abbr -a -g glo git log
+    abbr -a -g gr git rebase
+    abbr -a -g gm git merge
+end
