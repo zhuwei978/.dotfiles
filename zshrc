@@ -97,14 +97,16 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
+
+# Aliases
 # Git
 alias g='git'
 alias gst='git status'
 alias gco='git checkout'
 alias gcm='git checkout master'
 alias gb='git branch'
+alias ga='git add'
+alias gaa='git add .'
 alias gc='git commit -m'
 alias gr='git rebase'
 alias gri='git rebase -i'
@@ -121,9 +123,16 @@ alias gd='git diff'
 alias y='yarn'
 alias ys='yarn start'
 alias yps='yarn pstart'
+alias yga='yarn global add'
+alias yr='yarn remove'
+alias ygr='yarn global remove'
+alias yad='yarn add --dev'
 
 # fnm
 eval "$(fnm env --multi)"
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# flutter
+export PATH="$PATH:$HOME/code/flutter/bin"
