@@ -99,9 +99,29 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
+# Git
+alias g='git'
+alias gst='git status'
+alias gco='git checkout'
+alias gcm='git checkout master'
+alias gb='git branch'
+alias gc='git commit -m'
+alias gr='git rebase'
+alias gri='git rebase -i'
+alias gp='git push origin $(current_branch)'
+alias gl='git pull origin $(current_branch)'
+alias gpf='git push -f origin $(current_branch)'
+alias gm='git merge'
+alias gbd='git branch -d'
+alias gbD='git branch -D'
+alias gsh='git stash'
+alias gd='git diff'
+
+# Yarn
+alias y='yarn'
+alias ys='yarn start'
+alias yps='yarn pstart'
+
 # fnm
 eval "$(fnm env --multi)"
 
