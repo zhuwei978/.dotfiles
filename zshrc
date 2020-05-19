@@ -89,6 +89,8 @@ export EDITOR='nvim'
 
 # Disable auto-updating when brew install
 export HOMEBREW_NO_AUTO_UPDATE=1
+# Specify brew bundle file
+export HOMEBREW_BUNDLE_FILE="$HOME/.Brewfile"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -104,15 +106,19 @@ alias g='git'
 alias gst='git status'
 alias gco='git checkout'
 alias gcm='git checkout master'
+alias gcb='git checkout -b'
 alias gb='git branch'
 alias ga='git add'
 alias gaa='git add .'
 alias gc='git commit -m'
 alias gr='git rebase'
 alias gri='git rebase -i'
-alias gp='git push origin $(current_branch)'
-alias gl='git pull origin $(current_branch)'
-alias gpf='git push -f origin $(current_branch)'
+alias gra='git rebase -abort'
+alias grc='git rebase -continue'
+alias gp='git push'
+alias gpf='git push -f'
+alias gl='git pull'
+alias glo='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
 alias gm='git merge'
 alias gbd='git branch -d'
 alias gbD='git branch -D'
@@ -135,4 +141,4 @@ eval "$(fnm env --multi)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # flutter
-export PATH="$PATH:$HOME/code/flutter/bin"
+export PATH="$PATH:$HOME/flutter/bin"
