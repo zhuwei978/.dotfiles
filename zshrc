@@ -130,9 +130,13 @@ alias y='yarn'
 alias ys='yarn start'
 alias yps='yarn pstart'
 alias yga='yarn global add'
+alias ygl='yarn global list'
 alias yr='yarn remove'
 alias ygr='yarn global remove'
 alias yad='yarn add --dev'
+
+# npm
+alias ngl='npm list -g --depth 0'
 
 # fnm
 eval "$(fnm env --multi)"
