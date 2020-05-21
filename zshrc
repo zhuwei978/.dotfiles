@@ -140,7 +140,6 @@ alias ngl='npm list -g --depth 0'
 
 # fnm
 eval "$(fnm env --multi)"
-
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
