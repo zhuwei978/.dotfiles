@@ -7,6 +7,7 @@
   "suggest.noselect": false,
   "suggest.enablePreview": true,
   "snippets.userSnippetsDirectory": "~/.config/nvim/ultisnips",
+  "snippets.loadFromExtensions": false,
   "snippets.extends": {
     "less": ["css"]
   },
