@@ -42,8 +42,7 @@ let g:python3_host_prog='/usr/local/bin/python3'
 filetype plugin indent on
 syntax on
 set termguicolors
-colorscheme OceanicNext
-set lazyredraw
+colorscheme gruvbox
 set background=dark
 set noswapfile                 " 禁止生成临时文件
 set nowrap
@@ -52,7 +51,6 @@ set noshowmode                 " 已经有 lightline 了，无须显示命令
 set pumheight=10
 set autoindent
 set relativenumber
-set list
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -65,6 +63,7 @@ set incsearch
 set smartcase
 set splitright
 set clipboard+=unnamedplus     " use system clipboard
+
 " navigate in vim
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -75,6 +74,7 @@ nnoremap L <C-w>10<
 nnoremap <silent> <LEADER><SPACE> :noh<CR>
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
+
 " file operaion
 nnoremap <LEADER>w :w<CR>
 nnoremap <LEADER>q :q<CR>
