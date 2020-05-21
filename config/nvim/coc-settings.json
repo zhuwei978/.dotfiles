@@ -10,6 +10,7 @@
   "snippets.extends": {
     "less": ["css"]
   },
+  "coc.preferences.colorSupport": false,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
