@@ -15,11 +15,12 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " syntax
-Plug 'othree/html5.vim'
-Plug 'herringtondarkholme/yats.vim'
-Plug 'yuezk/vim-js'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'digitaltoad/vim-pug'
+" Plug 'othree/html5.vim'
+" Plug 'herringtondarkholme/yats.vim'
+" Plug 'yuezk/vim-js'
+" Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'digitaltoad/vim-pug'
+Plug 'sheerun/vim-polyglot'
 " markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'mzlogin/vim-markdown-toc'
