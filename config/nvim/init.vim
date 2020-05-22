@@ -15,11 +15,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " syntax
-" Plug 'othree/html5.vim'
-" Plug 'herringtondarkholme/yats.vim'
-" Plug 'yuezk/vim-js'
-" Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'digitaltoad/vim-pug'
 Plug 'sheerun/vim-polyglot'
 " markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
@@ -64,6 +59,12 @@ set incsearch
 set smartcase
 set splitright
 set clipboard+=unnamedplus     " use system clipboard
+
+" netrw
+let g:netrw_banner = 0 " hidden banner
+let g:netrw_winsize = 25
+let g:netrw_liststyle = 3 " tree style
+
 
 " navigate in vim
 nnoremap <c-j> <c-w>j
@@ -189,6 +190,7 @@ xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
+" To get correct comment highlighting
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " Using CocList
