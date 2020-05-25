@@ -98,7 +98,7 @@ endif
 
 " FZF
 let g:fzf_command_prefix = 'Fzf'
-nnoremap <silent> <C-p> :FZF<CR>
+nnoremap <silent> <C-p> :FzfGFiles<CR>
 nnoremap <LEADER>rg :FzfRg!<SPACE>
 
 " coc_extensions
