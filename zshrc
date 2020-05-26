@@ -101,6 +101,7 @@ export HOMEBREW_BUNDLE_FILE="$HOME/.Brewfile"
 # For a full list of active aliases, run `alias`.
 
 # Aliases
+
 # Git
 alias g='git'
 alias gst='git status'
@@ -137,6 +138,9 @@ alias yad='yarn add --dev'
 
 # npm
 alias ngl='npm list -g --depth 0'
+
+# nvim
+alias v='nvim'
 
 # fnm
 eval "$(fnm env --multi)"
