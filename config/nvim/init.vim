@@ -1,3 +1,4 @@
+" no compatible for vi
 set nocompatible
 " automatically installing vim-plug and relative plugins when vim-plug has not
 " been installed
@@ -99,9 +100,13 @@ else
 endif
 
 " FZF
-let g:fzf_command_prefix = 'Fzf'
-nnoremap <silent> <C-p> :FzfGFiles<CR>
-nnoremap <LEADER>rg :FzfRg!<SPACE>
+" ! for fullscreen
+nnoremap <silent> <C-p> :GFiles!<CR>
+nnoremap <LEADER>rg :Rg!<SPACE>
+nnoremap <silent> <C-b> :Buffers!<CR>
+
+" fugitive
+nnoremap <LEADER>gs :G<CR>
 
 " coc_extensions
 let g:coc_global_extensions = ['coc-emmet', 'coc-eslint', 'coc-git', 'coc-go', 'coc-css', 'coc-json', 'coc-lists', 'coc-python', 'coc-pairs', 'coc-prettier', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp', 'coc-yaml']
@@ -110,28 +115,20 @@ let g:lightline = {
   \ 'active': {
   \   'left': [
   \     [ 'mode', 'paste' ],
-  \     [ 'git', 'gitfilechange', 'cocstatus', 'filename', 'method' ]
+  \     [ 'git', 'cocstatus', 'filename' ]
   \   ],
   \   'right':[
-  \     [ 'diagnostic' ],
   \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
   \   ],
   \ },
   \ 'component_function': {
   \   'git': 'LightlineGitStatus',
-  \   'gitfilechange': 'LightlineGitFileChange',
-  \   'cocstatus': 'coc#status'
+  \   'cocstatus': 'coc#status',
   \ }
 \ }
 
 function! LightlineGitStatus() abort
   let git_status = get(g:, 'coc_git_status', '')
-  " return git_status
-  return winwidth(0) > 120 ? git_status : ''
-endfunction
-
-function! LightlineGitFileChange() abort
-  let git_status = get(b:, 'coc_git_status', '')
   " return git_status
   return winwidth(0) > 120 ? git_status : ''
 endfunction
@@ -159,13 +156,13 @@ set shortmess+=c
 set signcolumn=yes
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
+nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gm <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gm <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -183,23 +180,17 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Format the whole buffer
 command! -nargs=0 Format :call CocAction('format')
 " Remap for rename current word
-nmap <F2> <Plug>(coc-rename)
+nnoremap <F2> <Plug>(coc-rename)
 
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
+xnoremap if <Plug>(coc-funcobj-i)
+xnoremap af <Plug>(coc-funcobj-a)
+onoremap if <Plug>(coc-funcobj-i)
+onoremap af <Plug>(coc-funcobj-a)
 
 " To get correct comment highlighting
 autocmd FileType json syntax match Comment +\/\/.\+$+
-
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <LEADER>cd  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <LEADER>ce  :<C-u>CocList extensions<cr>
 
 " open help file in right window
 autocmd FileType help wincmd L
