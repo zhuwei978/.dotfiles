@@ -107,6 +107,9 @@ nnoremap <silent> <C-b> :Buffers!<CR>
 
 " fugitive
 nnoremap <LEADER>gs :G<CR>
+nnoremap <LEADER>vd :Gvdiffsplit!<CR>
+nnoremap <LEADER>df :diffget //2<CR>
+nnoremap <LEADER>dj :diffget //3<CR>
 
 " coc_extensions
 let g:coc_global_extensions = ['coc-emmet', 'coc-eslint', 'coc-git', 'coc-go', 'coc-css', 'coc-json', 'coc-lists', 'coc-python', 'coc-pairs', 'coc-prettier', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp', 'coc-yaml']
