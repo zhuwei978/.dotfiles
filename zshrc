@@ -116,6 +116,8 @@ alias gr='git rebase'
 alias gri='git rebase -i'
 alias gra='git rebase -abort'
 alias grc='git rebase -continue'
+alias grs='git reset --soft'
+alias grh='git reset --hard'
 alias gp='git push'
 alias gpf='git push -f'
 alias gl='git pull'
@@ -125,6 +127,9 @@ alias gbd='git branch -d'
 alias gbD='git branch -D'
 alias gsh='git stash'
 alias gd='git diff'
+alias gfp='git fetch --prune --all' # To prune all stale referenced remote branches
+alias gcam='git commit --amend -m' # modify last commit message
+alias gcan='git commit --amend --no-edit' # commit without message
 
 # Yarn
 alias y='yarn'
