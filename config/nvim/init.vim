@@ -101,13 +101,13 @@ endif
 
 " FZF
 " ! for fullscreen
-nnoremap <silent> <C-p> :GFiles!<CR>
+nnoremap <silent> <LEADER>p :GFiles!<CR>
 nnoremap <LEADER>rg :Rg!<SPACE>
 nnoremap <silent> <C-b> :Buffers!<CR>
 
 " fugitive
 nnoremap <LEADER>gs :G<CR>
-nnoremap <LEADER>vd :Gvdiffsplit!<CR>
+nnoremap <LEADER>ds :Gvdiffsplit!<CR>
 nnoremap <LEADER>df :diffget //2<CR>
 nnoremap <LEADER>dj :diffget //3<CR>
 
@@ -159,13 +159,13 @@ set shortmess+=c
 set signcolumn=yes
 
 " Use `[g` and `]g` to navigate diagnostics
-nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
-nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " Remap keys for gotos
-nnoremap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> gy <Plug>(coc-type-definition)
-nnoremap <silent> gm <Plug>(coc-implementation)
-nnoremap <silent> gr <Plug>(coc-references)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gm <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -183,14 +183,14 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Format the whole buffer
 command! -nargs=0 Format :call CocAction('format')
 " Remap for rename current word
-nnoremap <F2> <Plug>(coc-rename)
+nmap <F2> <Plug>(coc-rename)
 
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xnoremap if <Plug>(coc-funcobj-i)
-xnoremap af <Plug>(coc-funcobj-a)
-onoremap if <Plug>(coc-funcobj-i)
-onoremap af <Plug>(coc-funcobj-a)
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
 
 " To get correct comment highlighting
 autocmd FileType json syntax match Comment +\/\/.\+$+
