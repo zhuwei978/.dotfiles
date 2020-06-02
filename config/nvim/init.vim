@@ -41,6 +41,7 @@ filetype plugin indent on
 syntax on
 set termguicolors
 colorscheme gruvbox
+set cursorline
 set showtabline=2 
 set background=dark
 set noswapfile                 " 禁止生成临时文件
