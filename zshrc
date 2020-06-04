@@ -140,6 +140,7 @@ alias ygl='yarn global list'
 alias yr='yarn remove'
 alias ygr='yarn global remove'
 alias yad='yarn add --dev'
+alias ya='yarn add'
 
 # npm
 alias ngl='npm list -g --depth 0'
