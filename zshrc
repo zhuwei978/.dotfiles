@@ -147,6 +147,13 @@ alias ngl='npm list -g --depth 0'
 # nvim
 alias v='nvim'
 
+# kubectl
+alias k='kubectl'
+alias kc='kubectl config current-context'
+alias ks='kubectl config use-context'
+alias kgp='kubectl get pods'
+alias kl='kubectl logs -f'
+
 # fnm
 eval "$(fnm env --multi)"
 # fzf
