@@ -138,7 +138,7 @@ function! LightlineGitStatus() abort
 endfunction
 
 " for go auto-import when saving
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre * :call CocAction('runCommand', 'editor.action.organizeImport')
 
 autocmd bufnewfile,bufread *.ts set filetype=typescript.tsx
 autocmd bufnewfile,bufread *.js set filetype=javascript.jsx
