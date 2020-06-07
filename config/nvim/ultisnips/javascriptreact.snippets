@@ -62,6 +62,10 @@ snippet ima "import ... as ... from ..." b
 import ${3} as ${2} from '${1}';
 endsnippet
 
+snippet imn "import ..." b
+import '${1}'
+endsnippet
+
 snippet impt "import PropTypes from 'prop-types'" b
 import PropTypes from 'prop-types';
 endsnippet
@@ -128,18 +132,26 @@ ${1}.propTypes = {
 export default ${1};
 endsnippet
 
-snippet pt "PropTypes." b
-${1}: PropTypes.${2}
+snippet pt "PropTypes." w
+${1}: PropTypes.${2},
 endsnippet
 
-snippet ptr "PropTypes.isRequired" b
-${1}: PropTypes.${2}.isRequired
+snippet ptr "PropTypes.isRequired" w
+${1}: PropTypes.${2}.isRequired,
 endsnippet
 
-snippet try "try.catch" b
+snippet tc "try.catch" b
 try {
 	${2}
 } catch(e) {
+	${1}
+}
+endsnippet
+
+snippet tf "try.finally" b
+try {
+	${2}
+} finally {
 	${1}
 }
 endsnippet
