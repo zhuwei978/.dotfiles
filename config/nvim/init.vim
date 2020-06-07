@@ -100,6 +100,8 @@ else
   inoremap <expr> <tab> pumvisible() ? "\<C-y>" : "\<C-g>u\<tab>"
 endif
 
+inoremap <silent><expr> <c-m> coc#refresh()
+
 " FZF
 " ! for fullscreen
 nnoremap <silent> <LEADER>p :GFiles!<CR>
@@ -136,9 +138,6 @@ function! LightlineGitStatus() abort
   " return git_status
   return winwidth(0) > 120 ? git_status : ''
 endfunction
-
-" for go auto-import when saving
-autocmd BufWritePre * :call CocAction('runCommand', 'editor.action.organizeImport')
 
 autocmd bufnewfile,bufread *.ts set filetype=typescript.tsx
 autocmd bufnewfile,bufread *.js set filetype=javascript.jsx
@@ -183,6 +182,8 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " Format the whole buffer
 command! -nargs=0 Format :call CocAction('format')
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 " Remap for rename current word
 nmap <F2> <Plug>(coc-rename)
 
