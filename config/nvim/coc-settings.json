@@ -11,6 +11,7 @@
   "snippets.extends": {
     "less": ["css"]
   },
+  "tsserver.formatOnType": false,
   "coc.preferences.colorSupport": false,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "coc.preferences.formatOnSaveFiletypes": [
