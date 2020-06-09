@@ -100,7 +100,7 @@ else
   inoremap <expr> <tab> pumvisible() ? "\<C-y>" : "\<C-g>u\<tab>"
 endif
 
-inoremap <silent><expr> <c-m> coc#refresh()
+inoremap <silent><expr> <c-b> coc#refresh()
 
 " FZF
 " ! for fullscreen
