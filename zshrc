@@ -150,8 +150,9 @@ alias v='nvim'
 
 # kubectl
 alias k='kubectl'
-alias kc='kubectl config current-context'
-alias ks='kubectl config use-context'
+alias kcgc='kubectl config get-contexts'
+alias kccc='kubectl config current-context'
+alias kcuc='kubectl config use-context'
 alias kgp='kubectl get pods'
 alias kl='kubectl logs -f'
 
