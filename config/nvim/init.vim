@@ -69,6 +69,8 @@ let g:netrw_banner = 0 " hidden banner
 let g:netrw_winsize = 25
 let g:netrw_liststyle = 3 " tree style
 
+" highlight
+hi Visual guifg=#282828 guibg=LightBlue 
 
 " navigate in vim
 nnoremap <c-j> <c-w>j
