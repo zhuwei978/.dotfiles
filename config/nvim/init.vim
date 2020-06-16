@@ -86,8 +86,6 @@ nnoremap <silent> N Nzz
 " file operaion
 nnoremap <LEADER>w :w<CR>
 nnoremap <LEADER>q :q<CR>
-nnoremap <LEADER>wa :wa<CR>
-nnoremap <LEADER>qa :qa<CR>
 
 " open vimrc
 nnoremap <silent> <LEADER>rc :tabe ~/.config/nvim/init.vim<CR>
