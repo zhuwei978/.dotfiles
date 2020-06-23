@@ -70,9 +70,6 @@ let g:netrw_banner = 0 " hidden banner
 let g:netrw_winsize = 25
 let g:netrw_liststyle = 3 " tree style
 
-" highlight
-hi Visual guifg=#282828 guibg=LightBlue 
-
 " navigate in vim
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -81,8 +78,6 @@ nnoremap <c-h> <c-w>h
 nnoremap H <C-w>10>
 nnoremap L <C-w>10<
 nnoremap <silent> <LEADER><SPACE> :noh<CR>
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
 
 " file operaion
 nnoremap <LEADER>w :w<CR>
