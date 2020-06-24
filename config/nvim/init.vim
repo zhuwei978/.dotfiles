@@ -48,7 +48,7 @@ set noswapfile                 " 禁止生成临时文件
 set nowrap
 set confirm                    " 在处理未保存或只读文件的时候，弹出确认
 set noshowmode                 " 已经有 lightline 了，无须显示命令
-set nrformats=bin,hex                  " 对待所有数字为十进制数，这样在使用<C-a><C-x>的时候可以正常的加减
+set nrformats=bin,hex          " 对待所有数字为十进制数，这样在使用<C-a><C-x>的时候可以正常的加减
 set pumheight=10
 set autoindent
 set relativenumber
