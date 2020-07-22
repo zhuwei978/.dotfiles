@@ -155,7 +155,7 @@ alias kcgc='kubectl config get-contexts'
 alias kcuc='kubectl config use-context'
 alias kgp='kubectl get pods'
 alias kl='kubectl logs -f'
-alias kpf='kubectl post-forward'
+alias kpf='kubectl port-forward'
 
 # fnm
 eval "$(fnm env --multi)"
