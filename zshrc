@@ -157,6 +157,8 @@ alias kgp='kubectl get pods'
 alias kl='kubectl logs -f'
 alias kpf='kubectl port-forward'
 
+alias chrome='open -n -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security'
+
 # fnm
 eval "$(fnm env --multi)"
 # fzf
