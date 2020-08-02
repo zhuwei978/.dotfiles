@@ -100,12 +100,6 @@ export HOMEBREW_BUNDLE_FILE="$HOME/.Brewfile"
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-# Python virtualenvwrapper config
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
-
 # Aliases
 
 # Git
