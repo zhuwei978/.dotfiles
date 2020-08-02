@@ -166,3 +166,9 @@ eval "$(fnm env --multi)"
 
 # flutter
 export PATH="$PATH:$HOME/flutter/bin"
+
+# Python virtual env
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
