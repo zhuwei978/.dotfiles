@@ -12,6 +12,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'ryanoasis/vim-devicons'
 " completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -89,6 +90,9 @@ nnoremap <silent> <LEADER>re :so %<CR>:noh<CR>
 " work with coc-pairs for inserting new line and indent properly
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+" coc-explorer
+nnoremap tt :CocCommand explorer<CR>
+
 " Use <tab> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 " <tab> could be remapped by other vim plugin, try `:verbose imap <tab>`.
@@ -113,7 +117,7 @@ nnoremap <LEADER>df :diffget //2<CR>
 nnoremap <LEADER>dj :diffget //3<CR>
 
 " coc_extensions
-let g:coc_global_extensions = ['coc-emmet', 'coc-eslint', 'coc-git', 'coc-go', 'coc-css', 'coc-json', 'coc-lists', 'coc-python', 'coc-pairs', 'coc-prettier', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp', 'coc-yaml']
+let g:coc_global_extensions = ['coc-explorer', 'coc-emmet', 'coc-eslint', 'coc-git', 'coc-go', 'coc-css', 'coc-json', 'coc-lists', 'coc-python', 'coc-pairs', 'coc-prettier', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp', 'coc-yaml']
 " lightline
 let g:lightline = {
   \ 'active': {
