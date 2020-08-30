@@ -36,7 +36,6 @@ autocmd VimEnter *
   \| endif
 
 let mapleader = ' '
-let g:python3_host_prog='/usr/local/bin/python3'
 
 filetype plugin indent on
 syntax on
