@@ -27,6 +27,7 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
+Plug 'sainnhe/gruvbox-material'
 call plug#end()
 
 " Automatically install missing plugins on startup
@@ -39,14 +40,14 @@ let mapleader = ' '
 
 filetype plugin indent on
 syntax on
+" gruvbox theme config
+let g:gruvbox_material_enable_bold = 1
+let g:gruvbox_material_transparent_background = 1
+set background=dark
 set termguicolors
-colorscheme gruvbox
-" for transparent background
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
+colorscheme gruvbox-material
 set cursorline
 set showtabline=2 
-set background=dark
 set noswapfile                 " 禁止生成临时文件
 set nowrap
 set confirm                    " 在处理未保存或只读文件的时候，弹出确认
@@ -136,7 +137,7 @@ let g:lightline = {
   \   'cocstatus': 'coc#status',
   \ }
 \ }
-
+let g:lightline = {'colorscheme' : 'gruvbox_material'}
 function! LightlineGitStatus() abort
   let git_status = get(g:, 'coc_git_status', '')
   " return git_status

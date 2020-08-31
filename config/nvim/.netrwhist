@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/Users/zhuwei/.oh-my-zsh'
+let g:netrw_dirhist_9='/Users/zhuwei/.config/nvim/coc'
+let g:netrw_dirhist_8='/Users/zhuwei/.config/nvim'
+let g:netrw_dirhist_7='/Users/zhuwei/.config/nvim/coc'
+let g:netrw_dirhist_6='/Users/zhuwei/.config/nvim'
+let g:netrw_dirhist_5='/Users/zhuwei/.config/nvim/coc'
+let g:netrw_dirhist_4='/Users/zhuwei/.config/nvim'
+let g:netrw_dirhist_3='/Users/zhuwei/.config/nvim/coc'
+let g:netrw_dirhist_2='/Users/zhuwei/.config/nvim/coc/extensions'
+let g:netrw_dirhist_1='/Users/zhuwei/.config/nvim/coc'
