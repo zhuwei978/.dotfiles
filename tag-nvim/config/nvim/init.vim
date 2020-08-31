@@ -97,7 +97,7 @@ nnoremap <silent> <LEADER>re :so %<CR>:noh<CR>
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " coc-explorer
-nnoremap tt :CocCommand explorer<CR>
+nnoremap <LEADER>e :CocCommand explorer<CR>
 
 " Use <tab> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
