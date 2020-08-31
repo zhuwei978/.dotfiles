@@ -44,7 +44,10 @@ syntax on
 let g:gruvbox_material_enable_bold = 1
 let g:gruvbox_material_transparent_background = 1
 set background=dark
-set termguicolors
+" Important!!
+if has('termguicolors')
+  set termguicolors
+endif
 colorscheme gruvbox-material
 set cursorline
 set showtabline=2 
