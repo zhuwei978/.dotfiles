@@ -41,6 +41,9 @@ filetype plugin indent on
 syntax on
 set termguicolors
 colorscheme gruvbox
+" for transparent background
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 set cursorline
 set showtabline=2 
 set background=dark
