@@ -1,7 +1,7 @@
 # Window
 window:
   decorations: full
-  startup_mode: SimpleFullscreen
+  startup_mode: Fullscreen
   scrolling:
     history: 5000
     multiplier: 3
