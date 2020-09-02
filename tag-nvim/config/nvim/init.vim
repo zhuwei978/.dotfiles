@@ -11,8 +11,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 " other
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
 Plug 'ryanoasis/vim-devicons'
+Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
 " completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -95,6 +95,9 @@ nnoremap <silent> <LEADER>rc :tabe ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <LEADER>re :so %<CR>:noh<CR>
 " work with coc-pairs for inserting new line and indent properly
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" lazygit
+nnoremap <silent> <leader>lg :LazyGit<CR>
 
 " coc-explorer
 nnoremap <LEADER>e :CocCommand explorer<CR>
