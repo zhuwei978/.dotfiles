@@ -2,6 +2,7 @@ acpi 1.7-3
 acpid 2.0.32-2
 adwaita-maia 20191107-2
 alacarte 3.36.0+0+g7b5fc64-1
+alacritty 0.5.0-1
 autoconf 2.69-7
 autojump 22.5.3-5
 automake 1.16.2-3
@@ -51,6 +52,7 @@ ibus 1.5.22+8+gf591381e-1
 intel-ucode 20200616-1
 iputils 20190709-3
 kernel-alive 0.5-1
+lazygit 0.22.1-1
 lib32-mesa-demos 8.4.0-2
 licenses 20200427-1
 linux-latest 5.7-2
