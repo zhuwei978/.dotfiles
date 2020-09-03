@@ -1,9 +1,10 @@
 fnm env --multi | source
 
-set -U LANG en_US.UTF-8
-set -U EDITOR nvim
-set -U HOMEBREW_NO_AUTO_UPDATE 1
-set -U HOMEBREW_BUNDLE_FILE $HOME/.Brewfile
+set fish_greeting
+set -gx LANG en_US.UTF-8
+set -gx EDITOR nvim
+set -gx HOMEBREW_NO_AUTO_UPDATE 1
+set -gx HOMEBREW_BUNDLE_FILE $HOME/.Brewfile
 
 # Abbreviations
 if status --is-interactive
