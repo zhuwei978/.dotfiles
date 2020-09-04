@@ -52,6 +52,7 @@ ibus 1.5.22+8+gf591381e-1
 intel-ucode 20200616-1
 iputils 20190709-3
 kernel-alive 0.5-1
+kubectl 1.18.5-1
 lazygit 0.22.1-1
 lib32-mesa-demos 8.4.0-2
 licenses 20200427-1
