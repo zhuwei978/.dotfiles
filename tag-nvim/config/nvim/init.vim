@@ -119,12 +119,6 @@ nnoremap <silent> <LEADER>p :GFiles!<CR>
 nnoremap <LEADER>rg :Rg!<SPACE>
 nnoremap <silent> <C-b> :Buffers!<CR>
 
-" fugitive
-nnoremap <LEADER>gs :G<CR>
-nnoremap <LEADER>ds :Gvdiffsplit!<CR>
-nnoremap <LEADER>df :diffget //2<CR>
-nnoremap <LEADER>dj :diffget //3<CR>
-
 " coc_extensions
 let g:coc_global_extensions = ['coc-explorer', 'coc-emmet', 'coc-eslint', 'coc-git', 'coc-go', 'coc-css', 'coc-json', 'coc-lists', 'coc-python', 'coc-pairs', 'coc-prettier', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp', 'coc-yaml']
 " lightline
@@ -161,7 +155,7 @@ set hidden
 set nobackup
 set nowritebackup
 " Better display for messages
-set cmdheight=2
+" set cmdheight=2
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=100
 " don't give |ins-completion-menu| messages.
