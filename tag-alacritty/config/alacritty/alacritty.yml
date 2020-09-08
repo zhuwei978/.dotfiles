@@ -1,6 +1,6 @@
 # Window
 window:
-  decorations: full
+  decorations: none
   startup_mode: Maximized
   scrolling:
     history: 5000
@@ -23,7 +23,7 @@ font:
   size: 18.0
 
 # Background opacity
-background_opacity: 1.0
+background_opacity: 0.5
 
 # Colors (Gruvbox dark)
 colors:
