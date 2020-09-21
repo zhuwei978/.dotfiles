@@ -1,7 +1,7 @@
 # Window
 window:
   decorations: none
-  startup_mode: SimpleFullscreen
+  startup_mode: Fullscreen
   scrolling:
     history: 5000
     multiplier: 3
@@ -23,7 +23,7 @@ font:
   size: 18.0
 
 # Background opacity
-background_opacity: 0.5
+background_opacity: 1.0
 
 # Colors (Gruvbox dark)
 colors:
