@@ -41,11 +41,10 @@ let mapleader = ' '
 filetype plugin indent on
 syntax on
 " gruvbox theme config
-let g:gruvbox_material_enable_bold = 1
-let g:gruvbox_material_transparent_background = 1
 set background=dark
 " Important!!
 set termguicolors
+let g:gruvbox_material_background = 'hard'
 colorscheme gruvbox-material
 set cursorline
 set showtabline=2 
@@ -113,7 +112,7 @@ inoremap <silent><expr> <c-b> coc#refresh()
 
 " FZF
 " ! for fullscreen
-nnoremap <silent> <LEADER>p :GFiles!<CR>
+nnoremap <silent> <LEADER>p :Files!<CR>
 nnoremap <LEADER>rg :Rg!<SPACE>
 nnoremap <silent> <C-b> :Buffers!<CR>
 
@@ -184,9 +183,9 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " Format the whole buffer
-command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Format :call CocActionAsync('format')
 " use `:OR` for organize import of current buffer
-command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 " Remap for rename current word
 nmap <F2> <Plug>(coc-rename)
 
