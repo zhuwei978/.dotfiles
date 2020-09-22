@@ -1,7 +1,7 @@
 # Window
 window:
-  decorations: none
-  startup_mode: Fullscreen
+  decorations: full
+  startup_mode: Windowed
   scrolling:
     history: 5000
     multiplier: 3
@@ -21,6 +21,11 @@ font:
     family: JetBrainsMono Nerd Font
     style: Bold Italic
   size: 18.0
+  offset:
+    y: 10
+  glyph_offset:
+    y: 5
+  use_thin_strokes: true
 
 # Background opacity
 background_opacity: 1.0
