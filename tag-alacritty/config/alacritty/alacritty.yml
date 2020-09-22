@@ -25,7 +25,6 @@ font:
     y: 10
   glyph_offset:
     y: 5
-  use_thin_strokes: true
 
 # Background opacity
 background_opacity: 1.0
