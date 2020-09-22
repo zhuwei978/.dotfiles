@@ -20,7 +20,7 @@
   "diagnostic.warningSign": "\uf071",
   "diagnostic.infoSign": "\uf129",
   "diagnostic.hintSign": "\uf864",
-  "eslint.autoFixOnSave": true,
+  "eslint.packageManager": "yarn",
   "explorer.icon.enableNerdfont": true,
   "explorer.openAction.strategy": "tab",
   "explorer.previewAction.onHover": false,
@@ -60,7 +60,5 @@
     "unit": "\uf475",
     "value": "\uf89f",
     "variable": "\ue71b"
-  },
-  "typescript.suggest.completeFunctionCalls": false,
-  "tsserver.formatOnType": false
+  }
 }
