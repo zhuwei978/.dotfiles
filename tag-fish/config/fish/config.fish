@@ -19,4 +19,5 @@ if status --is-interactive
     abbr -a -g yr yarn remove
     abbr -a -g ya yarn add
     abbr -a -g yad yarn add -D
+    abbr -a -g chrome open -n -a "/Applications/Google\ Chrome.app --args --user-data-dir=\"/var/tmp/Chrome dev session\" --disable-web-security"
 end
