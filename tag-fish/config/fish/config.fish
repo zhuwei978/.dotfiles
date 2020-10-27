@@ -9,6 +9,7 @@ set -gx HOMEBREW_BUNDLE_FILE $HOME/.Brewfile
 # Abbreviations
 if status --is-interactive
     abbr -a -g v nvim
+    abbr -a -g k kubectl
     abbr -a -g lg lazygit
     abbr -a -g ra ranger
     abbr -a -g ngl npm global list
