@@ -28,7 +28,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 Plug 'sainnhe/gruvbox-material'
-Plug 'arcticicestudio/nord-vim'
+Plug 'haishanh/night-owl.vim'
 call plug#end()
 
 " Automatically install missing plugins on startup
@@ -40,10 +40,10 @@ autocmd VimEnter *
 let mapleader = ' '
 
 filetype plugin indent on
-syntax on
+syntax enable
 set background=dark
 set termguicolors
-colorscheme nord
+colorscheme gruvbox
 set cursorline
 set showtabline=2 
 set noswapfile                 " 禁止生成临时文件
