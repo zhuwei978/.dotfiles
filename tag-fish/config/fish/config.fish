@@ -5,6 +5,7 @@ set -gx LANG en_US.UTF-8
 set -gx EDITOR nvim
 set -gx HOMEBREW_NO_AUTO_UPDATE 1
 set -gx HOMEBREW_BUNDLE_FILE $HOME/.Brewfile
+set PATH $HOME/flutter/bin $PATH
 
 # Abbreviations
 if status --is-interactive
