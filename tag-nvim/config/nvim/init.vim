@@ -25,10 +25,11 @@ Plug 'mzlogin/vim-markdown-toc'
 Plug 'dhruvasagar/vim-table-mode'
 " theme
 Plug 'itchyny/lightline.vim'
-Plug 'morhetz/gruvbox'
-Plug 'mhartington/oceanic-next'
-Plug 'sainnhe/gruvbox-material'
-Plug 'haishanh/night-owl.vim'
+" Plug 'morhetz/gruvbox'
+" Plug 'mhartington/oceanic-next'
+" Plug 'sainnhe/gruvbox-material'
+" Plug 'haishanh/night-owl.vim'
+Plug 'lifepillar/vim-gruvbox8'
 call plug#end()
 
 " Automatically install missing plugins on startup
@@ -43,7 +44,7 @@ filetype plugin indent on
 syntax enable
 set background=dark
 set termguicolors
-colorscheme gruvbox
+colorscheme gruvbox8
 set cursorline
 set showtabline=2 
 set noswapfile                 " 禁止生成临时文件
@@ -132,7 +133,7 @@ let g:lightline = {
   \   'cocstatus': 'coc#status',
   \ }
 \ }
-let g:lightline = {'colorscheme' : 'gruvbox_material'}
+let g:lightline = {'colorscheme' : 'gruvbox8'}
 function! LightlineGitStatus() abort
   let git_status = get(g:, 'coc_git_status', '')
   " return git_status
