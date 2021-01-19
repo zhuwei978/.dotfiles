@@ -115,6 +115,9 @@ nnoremap <silent> <LEADER>p :Files!<CR>
 nnoremap <LEADER>rg :Rg!<SPACE>
 nnoremap <silent> <C-b> :Buffers!<CR>
 
+" python3
+let g:python3_host_prog = "/usr/local/bin/python3"
+
 " coc_extensions
 let g:coc_global_extensions = ['coc-explorer', 'coc-emmet', 'coc-eslint', 'coc-git', 'coc-go', 'coc-css', 'coc-json', 'coc-lists', 'coc-python', 'coc-pairs', 'coc-prettier', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp', 'coc-yaml']
 " lightline
