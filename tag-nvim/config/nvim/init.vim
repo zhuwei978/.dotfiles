@@ -25,11 +25,7 @@ Plug 'mzlogin/vim-markdown-toc'
 Plug 'dhruvasagar/vim-table-mode'
 " theme
 Plug 'itchyny/lightline.vim'
-" Plug 'morhetz/gruvbox'
-" Plug 'mhartington/oceanic-next'
-" Plug 'sainnhe/gruvbox-material'
-" Plug 'haishanh/night-owl.vim'
-Plug 'lifepillar/vim-gruvbox8'
+Plug 'gruvbox-community/gruvbox'
 call plug#end()
 
 " Automatically install missing plugins on startup
@@ -44,10 +40,12 @@ filetype plugin indent on
 syntax enable
 set background=dark
 set termguicolors
-colorscheme gruvbox8
+colorscheme gruvbox
+" always block cursor style
+set guicursor=
 set cursorline
 set showtabline=2 
-set noswapfile                 " 禁止生成临时文件
+set noswapfile
 set nowrap
 set confirm                    " 在处理未保存或只读文件的时候，弹出确认
 set noshowmode                 " 已经有 lightline 了，无须显示命令
@@ -55,18 +53,38 @@ set nrformats=bin,hex          " 对待所有数字为十进制数，这样在�
 set pumheight=10
 set autoindent
 set relativenumber
+set nu
+set colorcolumn=80
+" tab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
+
 set scrolloff=5
-set ignorecase                 " 搜索忽略大小写
-set hlsearch                   " 搜索逐字符高亮
+" search
+set ignorecase
+set nohlsearch
 set incsearch
 set smartcase
+
 set splitright
-set clipboard+=unnamedplus     " use system clipboard
+set clipboard+=unnamedplus
+
+" if hidden is not set, TextEdit might fail.
+set hidden
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+" Better display for messages
+set cmdheight=2
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=50
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+" always show signcolumns
+set signcolumn=yes
 
 " netrw
 let g:netrw_banner = 0 " hidden banner
@@ -80,7 +98,6 @@ nnoremap <c-l> <c-w>l
 nnoremap <c-h> <c-w>h
 nnoremap H <C-w>10>
 nnoremap L <C-w>10<
-nnoremap <silent> <LEADER><SPACE> :noh<CR>
 
 " file operaion
 nnoremap <LEADER>w :w<CR>
@@ -136,7 +153,7 @@ let g:lightline = {
   \   'cocstatus': 'coc#status',
   \ }
 \ }
-let g:lightline = {'colorscheme' : 'gruvbox8'}
+let g:lightline = {'colorscheme' : 'gruvbox'}
 function! LightlineGitStatus() abort
   let git_status = get(g:, 'coc_git_status', '')
   " return git_status
@@ -148,19 +165,6 @@ autocmd bufnewfile,bufread *.js set filetype=javascript.jsx
 autocmd User CocStatusChange,CocDiagnosticChange,CocGitStatusChange call lightline#update()
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')           " function signature"
 
-" if hidden is not set, TextEdit might fail.
-set hidden
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
-" Better display for messages
-" set cmdheight=2
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=100
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-" always show signcolumns
-set signcolumn=yes
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
