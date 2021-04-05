@@ -1,30 +1,32 @@
 {
-  "coc.preferences.colorSupport": false,
+  "coc.preferences.colorSupport": true,
   "coc.preferences.snippetStatusText": "Ⓢ ",
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
-    "javascriptreact",
     "typescript",
-    "typescriptreact",
-    "json",
-    "graphql",
-    "less",
     "css",
-    "html",
+    "less",
     "markdown",
-    "vue",
-    "go"
+    "jsonc",
+    "json"
   ],
+  "css.completion.completePropertyWithSemicolon": false,
+  "less.completion.completePropertyWithSemicolon": false,
   "diagnostic.errorSign": "\uf467",
   "diagnostic.warningSign": "\uf071",
   "diagnostic.infoSign": "\uf129",
   "diagnostic.hintSign": "\uf864",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
   "eslint.packageManager": "yarn",
   "explorer.icon.enableNerdfont": true,
   "explorer.openAction.strategy": "tab",
   "explorer.previewAction.onHover": false,
   "explorer.quitOnOpen": true,
+  "git.addGBlameToVirtualText": true,
   "python.jediEnabled": false,
   "suggest.snippetIndicator": "",
   "suggest.noselect": false,
@@ -32,7 +34,9 @@
   "snippets.userSnippetsDirectory": "~/.config/nvim/ultisnips",
   "snippets.loadFromExtensions": false,
   "snippets.extends": {
-    "less": ["css"]
+    "less": ["css"],
+    "javascriptreact": "javascript",
+    "typescriptreact": "typescript"
   },
   "suggest.completionItemKindLabels": {
     "class": "\uf0e8",

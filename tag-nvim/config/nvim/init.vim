@@ -15,6 +15,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
 " completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " syntax
@@ -54,7 +55,6 @@ set pumheight=10
 set autoindent
 set relativenumber
 set nu
-set colorcolumn=80
 " tab
 set tabstop=4
 set softtabstop=4
@@ -65,12 +65,17 @@ set smarttab
 set scrolloff=5
 " search
 set ignorecase
-set nohlsearch
 set incsearch
 set smartcase
+set nohlsearch
 
-set splitright
+set completeopt=menuone,noselect
+set mouse=a
 set clipboard+=unnamedplus
+set splitright
+set splitbelow
+
+let g:markdown_fenced_languages=['javascript', 'js=javascript', 'json=javascript']
 
 " if hidden is not set, TextEdit might fail.
 set hidden
@@ -85,11 +90,6 @@ set updatetime=50
 set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
-
-" netrw
-let g:netrw_banner = 0 " hidden banner
-let g:netrw_winsize = 25
-let g:netrw_liststyle = 3 " tree style
 
 " navigate in vim
 nnoremap <c-j> <c-w>j
@@ -136,39 +136,37 @@ nnoremap <silent> <C-b> :Buffers!<CR>
 let g:python3_host_prog = "/usr/local/bin/python3"
 
 " coc_extensions
-let g:coc_global_extensions = ['coc-explorer', 'coc-emmet', 'coc-eslint', 'coc-git', 'coc-go', 'coc-css', 'coc-json', 'coc-lists', 'coc-python', 'coc-pairs', 'coc-prettier', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp', 'coc-yaml']
+let g:coc_global_extensions = ['coc-explorer', 'coc-emmet', 'coc-eslint', 'coc-git', 'coc-go', 'coc-css', 'coc-json', 'coc-lists', 'coc-python', 'coc-prettier', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp', 'coc-yaml']
+
 " lightline
+function! LightlineGitBranch() abort
+  let branch = get(g:, 'coc_git_status', '')
+  " return blame
+  return winwidth(0) > 120 ? branch : ''
+endfunction
 let g:lightline = {
+  \ 'colorscheme': 'gruvbox',
   \ 'active': {
   \   'left': [
   \     [ 'mode', 'paste' ],
-  \     [ 'git', 'cocstatus', 'filename' ]
+  \     [ 'branch', 'filename', 'modified', 'cocstatus' ]
   \   ],
   \   'right':[
   \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
   \   ],
   \ },
   \ 'component_function': {
-  \   'git': 'LightlineGitStatus',
+  \   'branch': 'LightlineGitBranch',
   \   'cocstatus': 'coc#status',
   \ }
 \ }
-let g:lightline = {'colorscheme' : 'gruvbox'}
-function! LightlineGitStatus() abort
-  let git_status = get(g:, 'coc_git_status', '')
-  " return git_status
-  return winwidth(0) > 120 ? git_status : ''
-endfunction
 
-autocmd bufnewfile,bufread *.ts set filetype=typescript.tsx
-autocmd bufnewfile,bufread *.js set filetype=javascript.jsx
-autocmd User CocStatusChange,CocDiagnosticChange,CocGitStatusChange call lightline#update()
-autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')           " function signature"
-
+" function signature"
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> [d <Plug>(coc-diagnostic-prev)
+nmap <silent> ]d <Plug>(coc-diagnostic-next)
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -193,7 +191,7 @@ command! -nargs=0 Format :call CocActionAsync('format')
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 " Remap for rename current word
-nmap <F2> <Plug>(coc-rename)
+nmap <LEADER>rn <Plug>(coc-rename)
 
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -204,6 +202,3 @@ omap af <Plug>(coc-funcobj-a)
 
 " To get correct comment highlighting
 autocmd FileType json syntax match Comment +\/\/.\+$+
-
-" open help file in right window
-autocmd FileType help wincmd L
