@@ -136,7 +136,7 @@ nnoremap <silent> <C-b> :Buffers!<CR>
 let g:python3_host_prog = "/usr/local/bin/python3"
 
 " coc_extensions
-let g:coc_global_extensions = ['coc-explorer', 'coc-emmet', 'coc-eslint', 'coc-git', 'coc-go', 'coc-css', 'coc-json', 'coc-lists', 'coc-python', 'coc-prettier', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp', 'coc-yaml']
+let g:coc_global_extensions = ['coc-pairs', 'coc-explorer', 'coc-emmet', 'coc-eslint', 'coc-git', 'coc-go', 'coc-css', 'coc-json', 'coc-lists', 'coc-python', 'coc-prettier', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp', 'coc-yaml']
 
 " lightline
 function! LightlineGitBranch() abort
