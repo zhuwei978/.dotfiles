@@ -35,8 +35,8 @@
   "snippets.loadFromExtensions": false,
   "snippets.extends": {
     "less": ["css"],
-    "javascriptreact": "javascript",
-    "typescriptreact": "typescript"
+    "javascript": ["javascriptreact"],
+    "typescript": ["typescriptreact"]
   },
   "suggest.completionItemKindLabels": {
     "class": "\uf0e8",
