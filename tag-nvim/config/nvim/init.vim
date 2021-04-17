@@ -1,7 +1,7 @@
 " no compatible for vi
 set nocompatible
-" automatically installing vim-plug and relative plugins when vim-plug has not
-" been installed
+" automatically installing vim-plug and relative plugins
+" when vim-plug has not been installed
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -48,9 +48,12 @@ set cursorline
 set showtabline=2 
 set noswapfile
 set nowrap
-set confirm                    " 在处理未保存或只读文件的时候，弹出确认
-set noshowmode                 " 已经有 lightline 了，无须显示命令
-set nrformats=bin,hex          " 对待所有数字为十进制数，这样在使用<C-a><C-x>的时候可以正常的加减
+" 在处理未保存或只读文件的时候，弹出确认
+set confirm
+" 已经有 lightline 了，无须显示命令
+set noshowmode
+" 对待所有数字为十进制数，这样在使用<C-a><C-x>的时候可以正常的加减
+set nrformats=bin,hex
 set pumheight=10
 set autoindent
 set relativenumber
