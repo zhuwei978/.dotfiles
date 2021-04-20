@@ -128,7 +128,7 @@ inoremap <silent><expr> <c-b> coc#refresh()
 
 " FZF
 " ! for fullscreen
-nnoremap <silent> <LEADER>p :Files!<CR>
+nnoremap <silent> <LEADER>p :GFiles!<CR>
 nnoremap <LEADER>rg :Rg!<SPACE>
 nnoremap <silent> <C-b> :Buffers!<CR>
 
