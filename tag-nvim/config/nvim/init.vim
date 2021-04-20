@@ -42,8 +42,6 @@ syntax enable
 set background=dark
 set termguicolors
 colorscheme gruvbox
-" always block cursor style
-set guicursor=
 set cursorline
 set showtabline=2 
 set noswapfile
@@ -74,7 +72,6 @@ set nohlsearch
 
 set completeopt=menuone,noselect
 set mouse=a
-set clipboard+=unnamedplus
 set splitright
 set splitbelow
 
