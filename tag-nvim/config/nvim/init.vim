@@ -103,10 +103,6 @@ nnoremap <c-h> <c-w>h
 nnoremap H <C-w>10>
 nnoremap L <C-w>10<
 
-" file operaion
-nnoremap <LEADER>w :w<CR>
-nnoremap <LEADER>q :q<CR>
-
 " open vimrc
 nnoremap <silent> <LEADER>rc :tabe ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <LEADER>re :so %<CR>:noh<CR>
