@@ -50,9 +50,9 @@ set cursorline
 set showtabline=2 
 set noswapfile
 set nowrap
-" 在处理未保存或只读文件的时候，弹出确认
+" alert confirm modal when resolving read only files or quit with unsaved files
 set confirm
-" 已经有 lightline 了，无须显示命令
+" thank for lightline, we dont need this
 set noshowmode
 " 对待所有数字为十进制数，这样在使用<C-a><C-x>的时候可以正常的加减
 set nrformats=bin,hex
@@ -163,7 +163,7 @@ let g:lightline = {
 " function signature"
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
-" Use `[g` and `]g` to navigate diagnostics
+" Use `[d` and `]d` to navigate diagnostics
 nmap <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <silent> ]d <Plug>(coc-diagnostic-next)
 " Remap keys for gotos
