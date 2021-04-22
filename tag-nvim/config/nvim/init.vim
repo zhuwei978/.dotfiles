@@ -26,7 +26,7 @@ Plug 'mzlogin/vim-markdown-toc'
 Plug 'dhruvasagar/vim-table-mode'
 " theme
 Plug 'itchyny/lightline.vim'
-Plug 'gruvbox-community/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
 call plug#end()
 
 " Automatically install missing plugins on startup
@@ -39,9 +39,13 @@ let mapleader = ' '
 
 filetype plugin indent on
 syntax enable
+" theme
 set background=dark
 set termguicolors
-colorscheme gruvbox
+colorscheme gruvbox8
+let g:gruvbox_transp_bg = 1
+hi Normal guibg=NONE ctermbg=NONE
+
 set cursorline
 set showtabline=2 
 set noswapfile
@@ -145,7 +149,7 @@ function! LightlineGitBranch() abort
   return winwidth(0) > 120 ? branch : ''
 endfunction
 let g:lightline = {
-  \ 'colorscheme': 'gruvbox',
+  \ 'colorscheme': 'gruvbox8',
   \ 'active': {
   \   'left': [
   \     [ 'mode', 'paste' ],
