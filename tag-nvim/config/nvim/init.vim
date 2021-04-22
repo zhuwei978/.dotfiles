@@ -75,7 +75,6 @@ set smartcase
 set nohlsearch
 
 set completeopt=menuone,noselect
-set mouse=a
 set splitright
 set splitbelow
 
