@@ -102,8 +102,7 @@ nnoremap <c-h> <c-w>h
 nnoremap H <C-w>10>
 nnoremap L <C-w>10<
 
-" open vimrc
-nnoremap <silent> <LEADER>rc :tabe ~/.config/nvim/init.vim<CR>
+" source vimrc
 nnoremap <silent> <LEADER>re :so %<CR>:noh<CR>
 " work with coc-pairs for inserting new line and indent properly
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
