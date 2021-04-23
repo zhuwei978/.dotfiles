@@ -1,5 +1,3 @@
-fnm env --multi | source
-
 set fish_greeting
 set -gx LANG en_US.UTF-8
 set -gx EDITOR nvim
