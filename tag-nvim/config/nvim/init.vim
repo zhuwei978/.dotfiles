@@ -12,8 +12,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " other
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'ryanoasis/vim-devicons'
-Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
+Plug 'kyazdani42/nvim-web-devicons'
 " completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " search
