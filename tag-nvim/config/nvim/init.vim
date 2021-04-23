@@ -1,5 +1,6 @@
 " no compatible for vi
 set nocompatible
+set rtp+=/usr/local/opt/fzf
 " automatically installing vim-plug and relative plugins
 " when vim-plug has not been installed
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -20,6 +21,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " tree-sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'digitaltoad/vim-pug'
 " markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install', 'for': 'md'  }
 Plug 'mzlogin/vim-markdown-toc', { 'for': 'md' }
