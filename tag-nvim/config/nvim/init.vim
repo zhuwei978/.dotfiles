@@ -23,9 +23,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'digitaltoad/vim-pug'
 " markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install', 'for': 'md'  }
-Plug 'mzlogin/vim-markdown-toc', { 'for': 'md' }
-Plug 'dhruvasagar/vim-table-mode', { 'for': 'md' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install', 'for': 'markdown'  }
+Plug 'mzlogin/vim-markdown-toc'
+Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 " theme
 Plug 'itchyny/lightline.vim'
 Plug 'lifepillar/vim-gruvbox8'
@@ -45,7 +45,7 @@ syntax enable
 set background=dark
 set termguicolors
 colorscheme gruvbox8
-let g:gruvbox_transp_bg = 1
+" background opacity
 hi Normal guibg=NONE ctermbg=NONE
 
 " tree-sitter
