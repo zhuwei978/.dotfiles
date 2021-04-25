@@ -21,6 +21,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " tree-sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'digitaltoad/vim-pug'
 " markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install', 'for': 'markdown'  }
@@ -57,13 +58,24 @@ require'nvim-treesitter.configs'.setup {
   },
   indent = {
     enable = true,
-  }
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
+  },
 }
 EOF
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
-set cursorline
 set showtabline=2 
 set noswapfile
 set nowrap
@@ -74,9 +86,11 @@ set noshowmode
 " 对待所有数字为十进制数，这样在使用<C-a><C-x>的时候可以正常的加减
 set nrformats=bin,hex
 set pumheight=10
+" indent
 set autoindent
+set smartindent
 set relativenumber
-set nu
+set number
 " tab
 set tabstop=4
 set softtabstop=4
@@ -176,9 +190,6 @@ let g:lightline = {
   \ }
 \ }
 
-" function signature"
-autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-
 " Use `[d` and `]d` to navigate diagnostics
 nmap <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <silent> ]d <Plug>(coc-diagnostic-next)
@@ -207,13 +218,6 @@ command! -nargs=0 Format :call CocActionAsync('format')
 command! -nargs=0 OR :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 " Remap for rename current word
 nmap <LEADER>rn <Plug>(coc-rename)
-
-" Introduce function text object
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
 
 " To get correct comment highlighting
 autocmd FileType json syntax match Comment +\/\/.\+$+
