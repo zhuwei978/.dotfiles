@@ -1,5 +1,4 @@
 {
-  "coc.preferences.colorSupport": true,
   "coc.preferences.snippetStatusText": "Ⓢ ",
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "coc.preferences.formatOnSaveFiletypes": [

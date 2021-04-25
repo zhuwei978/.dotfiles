@@ -14,6 +14,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'tweekmonster/startuptime.vim'
+Plug 'norcalli/nvim-colorizer.lua'
 " completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " search
@@ -49,8 +50,8 @@ colorscheme gruvbox8
 " background opacity
 hi Normal guibg=NONE ctermbg=NONE
 
-" tree-sitter
 lua <<EOF
+-- nvim-treesitter
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
   highlight = {
@@ -72,9 +73,19 @@ require'nvim-treesitter.configs'.setup {
     },
   },
 }
+
+-- norcalli/nvim-colorizer.lua
+require 'colorizer'.setup {
+  'css';
+  'javascript';
+  'javascriptreact';
+  'html';
+  'less';
+}
 EOF
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+
 
 set showtabline=2 
 set noswapfile
@@ -83,8 +94,6 @@ set nowrap
 set confirm
 " thank for lightline, we dont need this
 set noshowmode
-" 对待所有数字为十进制数，这样在使用<C-a><C-x>的时候可以正常的加减
-set nrformats=bin,hex
 set pumheight=10
 " indent
 set autoindent
@@ -137,9 +146,6 @@ nnoremap L <C-w>10<
 nnoremap <silent> <LEADER>re :so %<CR>:noh<CR>
 " work with coc-pairs for inserting new line and indent properly
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" lazygit
-nnoremap <silent> <leader>lg :LazyGit<CR>
 
 " coc-explorer
 nnoremap <LEADER>e :CocCommand explorer<CR>
