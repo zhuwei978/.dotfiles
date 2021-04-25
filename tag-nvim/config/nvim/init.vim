@@ -13,6 +13,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'tweekmonster/startuptime.vim'
 " completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " search
