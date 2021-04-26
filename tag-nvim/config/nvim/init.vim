@@ -32,8 +32,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install', 'for': 'ma
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
 " theme
-Plug 'itchyny/lightline.vim'
 Plug 'lifepillar/vim-gruvbox8'
+Plug 'akinsho/nvim-bufferline.lua'
+" Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 call plug#end()
 
 " Automatically install missing plugins on startup
@@ -51,6 +52,7 @@ set background=dark
 set termguicolors
 colorscheme gruvbox8
 " background opacity
+
 hi Normal guibg=NONE ctermbg=NONE
 
 lua << EOF
@@ -112,8 +114,14 @@ require'nvim-web-devicons'.setup {
       name = "pug",
     }
   },
-  default = true
+  default = true,
 }
+
+-- akinsho/nvim-bufferline.lua
+require'bufferline'.setup {}
+
+-- glepnir/galaxyline.nvim
+-- require'lua.myline'
 EOF
 
 " telescope
@@ -127,7 +135,6 @@ set noswapfile
 set nowrap
 " alert confirm modal when resolving read only files or quit with unsaved files
 set confirm
-" thank for lightline, we dont need this
 set noshowmode
 set pumheight=10
 " indent
@@ -198,29 +205,6 @@ inoremap <silent><expr> <c-b> coc#refresh()
 
 " python3
 let g:python3_host_prog = "/usr/local/bin/python3"
-
-" lightline
-function! LightlineGitBranch() abort
-  let branch = get(g:, 'coc_git_status', '')
-  " return blame
-  return winwidth(0) > 120 ? branch : ''
-endfunction
-let g:lightline = {
-  \ 'colorscheme': 'gruvbox8',
-  \ 'active': {
-  \   'left': [
-  \     [ 'mode', 'paste' ],
-  \     [ 'branch', 'filename', 'modified', 'cocstatus' ]
-  \   ],
-  \   'right':[
-  \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
-  \   ],
-  \ },
-  \ 'component_function': {
-  \   'branch': 'LightlineGitBranch',
-  \   'cocstatus': 'coc#status',
-  \ }
-\ }
 
 " Use `[d` and `]d` to navigate diagnostics
 nmap <silent> [d <Plug>(coc-diagnostic-prev)
