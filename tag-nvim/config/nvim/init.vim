@@ -1,6 +1,5 @@
 " no compatible for vi
 set nocompatible
-set rtp+=/usr/local/opt/fzf
 " automatically installing vim-plug and relative plugins
 " when vim-plug has not been installed
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -15,11 +14,15 @@ Plug 'tpope/vim-commentary'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'tweekmonster/startuptime.vim'
 Plug 'norcalli/nvim-colorizer.lua'
+" explorer
+Plug 'kyazdani42/nvim-tree.lua'
 " completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " search
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 " tree-sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -50,7 +53,7 @@ colorscheme gruvbox8
 " background opacity
 hi Normal guibg=NONE ctermbg=NONE
 
-lua <<EOF
+lua << EOF
 -- nvim-treesitter
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
@@ -75,17 +78,49 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- norcalli/nvim-colorizer.lua
-require 'colorizer'.setup {
+require('colorizer').setup {
   'css';
   'javascript';
   'javascriptreact';
   'html';
   'less';
 }
-EOF
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
 
+-- nvim-telescope/telescope.nvim
+require'telescope'.setup {
+  defaults = {
+    file_sorter = require'telescope.sorters'.get_fzy_sorter,
+    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+  },
+  extensions = {
+    fzy_native = {
+      override_generic_sorter = false,
+      override_file_sorter = true,
+    },
+  },
+}
+require'telescope'.load_extension('fzy_native')
+
+-- kyazdani42/nvim-web-devicons
+require'nvim-web-devicons'.setup {
+  override = {
+    pug = {
+      icon = "",
+      color = "#e34c26",
+      name = "pug",
+    }
+  },
+  default = true
+}
+EOF
+
+" telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 set showtabline=2 
 set noswapfile
@@ -147,8 +182,8 @@ nnoremap <silent> <LEADER>re :so %<CR>:noh<CR>
 " work with coc-pairs for inserting new line and indent properly
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" coc-explorer
-nnoremap <LEADER>e :CocCommand explorer<CR>
+" explorer
+nnoremap <LEADER>e :NvimTreeToggle<CR>
 
 " Use <tab> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -161,17 +196,8 @@ endif
 
 inoremap <silent><expr> <c-b> coc#refresh()
 
-" FZF
-" ! for fullscreen
-nnoremap <silent> <LEADER>p :GFiles!<CR>
-nnoremap <LEADER>rg :Rg!<SPACE>
-nnoremap <silent> <C-b> :Buffers!<CR>
-
 " python3
 let g:python3_host_prog = "/usr/local/bin/python3"
-
-" coc_extensions
-let g:coc_global_extensions = ['coc-pairs', 'coc-explorer', 'coc-emmet', 'coc-eslint', 'coc-git', 'coc-go', 'coc-css', 'coc-json', 'coc-lists', 'coc-python', 'coc-prettier', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp', 'coc-yaml']
 
 " lightline
 function! LightlineGitBranch() abort
