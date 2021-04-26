@@ -11,7 +11,7 @@ if status --is-interactive
     abbr -a -g k kubectl
     abbr -a -g lg lazygit
     abbr -a -g ra ranger
-    abbr -a -g ngl npm global list
+    abbr -a -g ngl npm list -g
     abbr -a -g y yarn
     abbr -a -g ys yarn start
     abbr -a -g yps yarn pstart
