@@ -1,6 +1,5 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
-
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -8,26 +7,22 @@ if fn.empty(fn.glob(install_path)) > 0 then
   execute 'packadd packer.nvim'
 end
 
-return require('packer').startup(function()
-    use {'wbthomason/packer.nvim', opt = true}
+return require('packer').startup(function(use)
+    use {'wbthomason/packer.nvim'}
     use {
         'blackCauldron7/surround.nvim',
-        opt = true,
-        config = [[require'surround'.setup {}]]
+        config = [[require('surround').setup {}]]
     }
-    use {'tomtom/tcomment_vim', opt = true}
+    use {'tomtom/tcomment_vim'}
     use {
         'nvim-treesitter/nvim-treesitter',
-        requires = {
-            'nvim-treesitter/nvim-treesitter-textobjects'
-        },
+        requires = {'nvim-treesitter/nvim-treesitter-textobjects'},
         config = [[require('config.treesitter')]],
         run = ':TSUpdate'
     }
     use {
         'iamcco/markdown-preview.nvim',
         run = 'cd app && yarn install',
-        cmd = 'MarkdownPreview'
     }
     use 'dracula/vim'
     use 'tweekmonster/startuptime.vim'
@@ -36,44 +31,47 @@ return require('packer').startup(function()
         config = [[require('config.colorizer')]]
     }
     use {
-        'kyazdani42/nvim-tree.lua', 
-        cmd = 'NvimTreeToggle',
-        requires = {'kyazdani42/nvim-web-devicons'}
+        'kyazdani42/nvim-tree.lua',
+        config = [[require'config.nvim-tree']],
     }
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
-        config = [[require('config.telescope')]],
-        cmd = 'Telescope'
+        requires = {
+            {'nvim-lua/popup.nvim'},
+            {'nvim-lua/plenary.nvim'},
+            {'nvim-telescope/telescope-fzy-native.nvim'},
+        },
+        config = [[require'config.telescope']],
     }
-    use 'nvim-telescope/telescope-fzy-native.nvim'
     use 'digitaltoad/vim-pug'
     use {
         'kyazdani42/nvim-web-devicons',
         config = [[require'config.icon']],
-        opt = true
     }
     use {
         'akinsho/nvim-bufferline.lua',
-        requires = {'kyazdani42/nvim-web-devicons'},
-        config = [[require'bufferline'.setup {}]],
+        config = [[require'config.bufferline']],
+        requires = {'kyazdani42/nvim-web-devicons'}
     }
     use {
         'glepnir/galaxyline.nvim',
         branch = 'main',
         config = [[require'config.statusline']],
+        requires = {'kyazdani42/nvim-web-devicons'}
     }
     use {
         'lewis6991/gitsigns.nvim',
         requires = {'nvim-lua/plenary.nvim'},
-        config = [[require'gitsigns'.setup {}]]
+        config = [[require'config.gitsigns']],
     }
     use {
          'neovim/nvim-lspconfig',
-         requires = {'kabouzeid/nvim-lspinstall'}
+         requires = {'kabouzeid/nvim-lspinstall'},
+         config = [[require'config.lsp']],
     }
     use {
         'hrsh7th/nvim-compe',
-        config = [[require'compe'.setup {}]]
+        config = [[require'config.compe']],
     }
+    use 'hrsh7th/vim-vsnip'
 end)
