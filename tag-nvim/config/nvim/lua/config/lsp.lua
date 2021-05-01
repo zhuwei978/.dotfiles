@@ -23,6 +23,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
+  print(client.resolved_capabilities.document_formatting)
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
     buf_set_keymap("n", "<leader>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
@@ -45,20 +46,20 @@ local lua_settings = {
   Lua = {
     runtime = {
       -- LuaJIT in the case of Neovim
-      version = 'LuaJIT',
-      path = vim.split(package.path, ';'),
+      version = "LuaJIT",
+      path = vim.split(package.path, ";")
     },
     diagnostics = {
       -- Get the language server to recognize the `vim` global
-      globals = {'vim'},
+      globals = { "vim" }
     },
     workspace = {
       -- Make the server aware of Neovim runtime files
       library = {
-        [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-        [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-      },
-    },
+        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
+      }
+    }
   }
 }
 
@@ -84,10 +85,7 @@ local function setup_servers()
   for _, server in pairs(servers) do
     local config = make_config()
 
-    -- language specific config
-    if server == "lua" then
-      config.settings = lua_settings
-    end
+    if server == "lua" then config.settings = lua_settings end
 
     require'lspconfig'[server].setup(config)
   end
