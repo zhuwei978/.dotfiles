@@ -7,7 +7,9 @@ local autocmd = utils.autocmd
 local map = utils.map
 
 -- Leader
-g.mapleader = [[ ]]
+g.mapleader = " "
+g.python_host_prog = '/usr/bin/python'
+g.python3_host_prog = '/usr/local/bin/python3'
 
 -- Disable some built-in plugins we don't want
 local disabled_built_ins = {
@@ -23,12 +25,17 @@ local window = {o, wo}
 local tabWidth = 4
 opt('textwidth', 100, buffer)
 opt('scrolloff', 7)
+opt('wrap', false, window)
 opt('wildignore', '*.o,*~,*.pyc')
 opt('wildmode', 'longest,full')
 opt('inccommand', 'nosplit')
+opt('pumheight', 15)
+opt('splitright', true)
+opt('splitbelow', true)
 opt('lazyredraw', true)
 opt('showmatch', true)
 opt('ignorecase', true)
+opt('hlsearch', false)
 opt('smartcase', true)
 opt('tabstop', tabWidth, buffer)
 opt('softtabstop', 0, buffer)
