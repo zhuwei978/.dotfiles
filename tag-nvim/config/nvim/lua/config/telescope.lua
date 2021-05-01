@@ -1,4 +1,9 @@
 local telescope = require'telescope'
+local utils = require'config.utils'
+local map = utils.map
+
+map('n', '<leader>ff', '<cmd>Telescope find_files prompt_prefix=📂<cr>')
+map('n', '<leader>fg', '<cmd>Telescope live_grep prompt_prefix=🔍<cr>')
 
 telescope.setup {
     defaults = {
