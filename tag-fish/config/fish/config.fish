@@ -1,9 +1,15 @@
 set fish_greeting
 set -gx LANG en_US.UTF-8
 set -gx EDITOR nvim
+set -gx VISUAL nvim
 set -gx HOMEBREW_NO_AUTO_UPDATE 1
 set -gx HOMEBREW_BUNDLE_FILE $HOME/.Brewfile
 set PATH $HOME/flutter/bin $PATH
+
+set fish_cursor_default block
+set fish_cursor_insert block
+set fish_cursor_replace_one underscore
+set fish_cursor_visual block
 
 # Abbreviations
 if status --is-interactive
