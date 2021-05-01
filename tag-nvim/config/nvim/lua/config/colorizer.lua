@@ -1,6 +1,4 @@
-require'colorizer'.setup {
-    {'css', 'html', 'pug', 'javascript', 'javascriptreact', 'less'},
-    {
-        css = true
-    }
-}
+require'colorizer'.setup (
+    {'css'; 'html'; 'pug'; 'javascript'; 'javascriptreact'; 'less'},
+    {css = true}
+)
