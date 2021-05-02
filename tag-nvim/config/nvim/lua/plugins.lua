@@ -16,7 +16,10 @@ return require('packer').startup(function(use)
     use {'tomtom/tcomment_vim'}
     use {
         'nvim-treesitter/nvim-treesitter',
-        requires = {'nvim-treesitter/nvim-treesitter-textobjects'},
+        requires = {
+            'nvim-treesitter/nvim-treesitter-textobjects',
+            'nvim-treesitter/playground',
+        },
         config = [[require('config.treesitter')]],
         run = ':TSUpdate'
     }
@@ -73,5 +76,8 @@ return require('packer').startup(function(use)
         'hrsh7th/nvim-compe',
         config = [[require'config.compe']],
     }
-    use 'hrsh7th/vim-vsnip'
+    use {
+        'hrsh7th/vim-vsnip',
+        config = [[require'config.vsnip']],
+    }
 end)

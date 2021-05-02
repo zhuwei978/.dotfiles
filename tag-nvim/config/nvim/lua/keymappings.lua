@@ -2,7 +2,6 @@ local utils = require'config.utils'
 local map = utils.map
 
 -- Keybindings
-local silent = { silent = true }
 -- Window movement
 map('n', '<c-h>', '<c-w>h')
 map('n', '<c-j>', '<c-w>j')
