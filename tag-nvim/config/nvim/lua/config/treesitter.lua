@@ -28,5 +28,8 @@ require'nvim-treesitter.configs'.setup {
             ['im'] = '@call.inner'
           }
         }
-      }
+    },
+    playground = {
+        enable = true,
+    },
 }
