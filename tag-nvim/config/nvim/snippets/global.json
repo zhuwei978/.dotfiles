@@ -1,0 +1,199 @@
+{
+    "Print to console": {
+        "prefix": "clg",
+        "body": [
+            "console.log($1);"
+        ],
+        "scope": "javascript,typescript,typescriptreact,javascriptreact",
+        "description": "Log output to console"
+    },
+    "destruct object": {
+        "prefix": "do",
+        "scope": "javascript,typescript,typescriptreact,javascriptreact",
+        "body": "const { $2 } = $1;"
+    },
+    "destruct array": {
+        "prefix": "da",
+        "scope": "javascript,typescript,typescriptreact,javascriptreact",
+        "body": "const [$2] = $1;"
+    },
+    "import $2 from $1": {
+        "prefix": "imp",
+        "scope": "javascript,typescript,typescriptreact,javascriptreact",
+        "body": "import $2 from '$1'"
+    },
+    "import { $2 } from $1": {
+        "prefix": "imd",
+        "scope": "javascript,typescript,typescriptreact,javascriptreact",
+        "body": "import { $2 } from '$1'"
+    },
+    "import * as $2 from $1": {
+        "prefix": "ima",
+        "scope": "javascript,typescript,typescriptreact,javascriptreact",
+        "body": "import * as $2 from '$1'"
+    },
+    "import 'xxx.less'": {
+        "prefix": "imn",
+        "scope": "javascript,typescript,typescriptreact,javascriptreact",
+        "body": "import '${1}'",
+    },
+    "export const $1 = $2": {
+        "prefix": "exc",
+        "scope": "javascript,typescript,typescriptreact,javascriptreact",
+        "body": "export const $1 = $2"
+    },
+    "export interface": {
+        "prefix": "exi",
+        "scope": "typescript,typescriptreact",
+        "body": "export interface $1 {$2}"
+    },
+    "export default": {
+        "prefix": "exp",
+        "scope": "javascript,typescript,typescriptreact,javascriptreact",
+        "body": "export default $1;"
+    },
+    "export {$2} from $1": {
+        "prefix": "exd",
+        "scope": "javascript,typescript,typescriptreact,javascriptreact",
+        "body": "export { $2 } from $1;"
+    },
+    "export * from $1": {
+        "prefix": "exa",
+        "scope": "javascript,typescript,typescriptreact,javascriptreact",
+        "body": "export * from $1"
+    },
+    "eslint disable line": {
+        "prefix": "edl",
+        "scope": "javascript, typescript, javascriptreact, typescriptreact",
+        "body": "// eslint-disable-line"
+    },
+    "eslint disable next line": {
+        "prefix": "ednl",
+        "scope": "javascript, typescript, javascriptreact, typescriptreact",
+        "body": "// eslint-disable-next-line"
+    },
+    "if statement": {
+        "prefix": "iff",
+        "scope": "javascript, typescript, javascriptreact, typescriptreact",
+        "body": [
+            "if (${1}) {",
+            "\t${2}",
+            "}",
+        ]
+    },
+    "try...catch...": {
+        "prefix": "tc",
+        "scope": "javascript, typescript, javascriptreact, typescriptreact",
+        "body": [
+            "try {",
+            "\t${2}",
+            "} catch (e) {",
+            "\t${1}",
+            "}",
+        ]
+    },
+    "try...finally...": {
+        "prefix": "tf",
+        "scope": "javascript, typescript, javascriptreact, typescriptreact",
+        "body": [
+            "try {",
+            "\t${1}",
+            "} finally {",
+            "\t${2}",
+            "}",
+        ]
+    },
+    "function() {}": {
+        "prefix": "fun",
+        "scope": "javascript, typescript, javascriptreact, typescriptreact",
+        "body": [
+            "function ${1:name}(${2:arguments}) {",
+            "\t${3}",
+            "}",
+        ]
+    },
+    "async function() {}": {
+        "prefix": "afun",
+        "scope": "javascript, typescript, javascriptreact, typescriptreact",
+        "body": [
+            "async function ${1:name}(${2:arguments}) {",
+            "\t${3}",
+            "}",
+        ]
+    },
+    "useEffect async function call": {
+        "prefix": "ufun",
+        "scope": "javascript, typescript, javascriptreact, typescriptreact",
+        "body": [
+            "useEffect(() => {",
+            "\tasync function ${2:funcName}() {",
+            "\t\t${3:funcBody}",
+            "\t}",
+            "",
+            "\t${2:funcName}();",
+            "}, [${1:dep}])"
+        ],
+        "description": "useEffect async function call"
+    },
+    "react functional component": {
+        "prefix": "rfc",
+        "scope": "javascript, typescript, javascriptreact, typescriptreact",
+        "body": [
+            "import React from 'react'",
+            "",
+            "function $TM_FILENAME_BASE() {",
+            "\treturn (",
+            "\t\t${1}",
+            "\t)",
+            "}",
+            "",
+            "export default $TM_FILENAME_BASE;"
+        ]
+    },
+    "react functional component with prop-types": {
+        "prefix": "rfcp",
+        "scope": "javascript, typescript, javascriptreact, typescriptreact",
+        "body": [
+            "import React from 'react'",
+            "import PropTypes from 'prop-types'",
+            "",
+            "function $TM_FILENAME_BASE() {",
+            "\treturn (",
+            "\t\t${1}",
+            "\t)",
+            "}",
+            "",
+            "$TM_FILENAME_BASE.defaultProps = {",
+            "\t",
+            "}",
+            "",
+            "",
+            "$TM_FILENAME_BASE.propTypes = {",
+            "\t",
+            "}",
+            "",
+            "export default $TM_FILENAME_BASE;"
+        ]
+    },
+    "propTypes snippets": {
+        "prefix": "ptr",
+        "scope": "javascript, typescript, javascriptreact, typescriptreact",
+        "body": "${1:prop}: PropTypes.${2:type}.isRequired"
+    },
+    "react single page component": {
+        "prefix": "rsc",
+        "scope": "javascript, typescript, javascriptreact, typescriptreact",
+        "body": [
+            "import React from 'react'",
+            "import { render } from 'react-dom'",
+            "",
+            "function App() {",
+            "\treturn (",
+            "\t\t${1}",
+            "\t)",
+            "}",
+            "",
+            "render(<App />, document.querySelector('#app'))"
+        ]
+    }
+}
