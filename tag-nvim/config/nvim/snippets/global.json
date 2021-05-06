@@ -35,7 +35,7 @@
     "import 'xxx.less'": {
         "prefix": "imn",
         "scope": "javascript,typescript,typescriptreact,javascriptreact",
-        "body": "import '${1}'",
+        "body": "import '${1}'"
     },
     "export const $1 = $2": {
         "prefix": "exc",
@@ -78,7 +78,7 @@
         "body": [
             "if (${1}) {",
             "\t${2}",
-            "}",
+            "}"
         ]
     },
     "try...catch...": {
@@ -89,7 +89,7 @@
             "\t${2}",
             "} catch (e) {",
             "\t${1}",
-            "}",
+            "}"
         ]
     },
     "try...finally...": {
@@ -100,7 +100,7 @@
             "\t${1}",
             "} finally {",
             "\t${2}",
-            "}",
+            "}"
         ]
     },
     "function() {}": {
@@ -109,7 +109,7 @@
         "body": [
             "function ${1:name}(${2:arguments}) {",
             "\t${3}",
-            "}",
+            "}"
         ]
     },
     "async function() {}": {
@@ -118,7 +118,7 @@
         "body": [
             "async function ${1:name}(${2:arguments}) {",
             "\t${3}",
-            "}",
+            "}"
         ]
     },
     "useEffect async function call": {
