@@ -1,10 +1,9 @@
 local map = require'config.utils'.map
 
-local opts = {noremap = true, silent = true, expr = true}
+local opts = {silent = true, noremap = true, expr = true}
 map('i', '<c-b>', [[compe#complete()]], opts)
-map('i', '<Tab>', [[compe#confirm('<cr>')]], opts)
-map('i', '<c-e>', [[compe#close('<c-e>')]], opts)
-
+map('i', '<Tab>', [[compe#confirm('<Tab>')]], opts)
+map('i', '<c-e>', [[compe#close()]], opts)
 
 require'compe'.setup {
   enabled = true;
