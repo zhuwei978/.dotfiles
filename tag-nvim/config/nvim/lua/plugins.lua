@@ -9,9 +9,10 @@ end
 
 return require('packer').startup(function(use)
     use {'wbthomason/packer.nvim'}
+    use 'tpope/vim-surround'
     use {
-        'blackCauldron7/surround.nvim',
-        config = [[require('surround').setup {}]]
+        'windwp/nvim-autopairs',
+        config = [[require('nvim-autopairs').setup()]]
     }
     use {'tomtom/tcomment_vim'}
     use {
@@ -20,7 +21,7 @@ return require('packer').startup(function(use)
             'nvim-treesitter/nvim-treesitter-textobjects',
             'nvim-treesitter/playground',
         },
-        config = [[require('config.treesitter')]],
+        config = [[require'config.treesitter']],
         run = ':TSUpdate'
     }
     use {
@@ -31,7 +32,7 @@ return require('packer').startup(function(use)
     use 'tweekmonster/startuptime.vim'
     use {
         'norcalli/nvim-colorizer.lua',
-        config = [[require('config.colorizer')]]
+        config = [[require'config.colorizer']]
     }
     use {
         'kyazdani42/nvim-tree.lua',
