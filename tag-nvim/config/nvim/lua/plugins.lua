@@ -8,13 +8,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require('packer').startup(function(use)
-    use {'wbthomason/packer.nvim'}
+    use 'editorconfig/editorconfig-vim'
+    use 'wbthomason/packer.nvim'
     use 'tpope/vim-surround'
-    use {
-        'windwp/nvim-autopairs',
-        config = [[require('nvim-autopairs').setup()]]
-    }
-    use {'tomtom/tcomment_vim'}
+    use 'mattn/emmet-vim'
+    use 'Raimondi/delimitMate'
+    use 'tomtom/tcomment_vim'
     use {
         'nvim-treesitter/nvim-treesitter',
         requires = {
