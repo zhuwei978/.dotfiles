@@ -4,6 +4,7 @@ local opts = {silent = true, noremap = true, expr = true}
 map('i', '<c-b>', [[compe#complete()]], opts)
 map('i', '<Tab>', [[compe#confirm('<Tab>')]], opts)
 map('i', '<c-e>', [[compe#close()]], opts)
+map('i', '<CR>', [[compe#confirm({ 'keys': "\<Plug>delimitMateCR", 'mode': '' })]], opts)
 
 require'compe'.setup {
   enabled = true;
