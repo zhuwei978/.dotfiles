@@ -83,8 +83,7 @@ vim.g.python3_host_prog = '/usr/local/bin/python3'
 vim.bo.expandtab = true
 vim.bo.shiftwidth = 2
 vim.bo.tabstop = 2
-vim.bo.softtabstop = 2
--- must have
+vim.bo.softtabstop = -1
 vim.o.smarttab = true
 -- indent settings
 vim.bo.smartindent = true
@@ -127,7 +126,7 @@ vim.o.showmatch = true
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.o.foldlevelstart = 99
-vim.o.completeopt = 'menuone,noinsert'
+vim.o.completeopt = 'menuone,noselect'
 -- colorscheme settings
 vim.o.background = 'dark'
 vim.o.termguicolors = true
@@ -188,7 +187,6 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'v', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
@@ -365,6 +363,7 @@ vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
 require('compe').setup {
+  preselect = 'always',
   source = {
     path = true,
     nvim_lsp = true,
@@ -429,8 +428,8 @@ vim.api.nvim_set_keymap('n', '<c-j>', '<c-w>j', { noremap = true, silent = true 
 vim.api.nvim_set_keymap('n', '<c-k>', '<c-w>k', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<c-l>', '<c-w>l', { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('n', 'S-H', '<cmd>resize -10<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'S-L', '<cmd>resize +10<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'H', '<cmd>vertical resize -10<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'L', '<cmd>vertical resize +10<CR>', { noremap = true, silent = true })
 
 
 -- Emmet settings
@@ -438,6 +437,15 @@ vim.g.user_emmet_complete_tag = 0
 vim.g.user_emmet_install_global = 0
 vim.g.user_emmet_install_command = 0
 vim.g.user_emmet_mode = 'i'
+vim.g.user_emmet_settings = {
+  javascript = {
+    extends = 'jsx'
+  },
+  typescript = {
+    extends = 'tsx'
+  }
+}
+vim.cmd [[autocmd FileType html,css,javascript,typescript EmmetInstall]]
 
 -- Statusline settings
 local gl = require('galaxyline')
