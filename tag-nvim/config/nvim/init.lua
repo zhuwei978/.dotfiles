@@ -5,13 +5,12 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
 end
 
-vim.api.nvim_exec(
-  [[
+vim.api.nvim_exec([[
   augroup Packer
     autocmd!
     autocmd BufWritePost init.lua PackerCompile
   augroup end
-]],
+  ]],
   false
 )
 
@@ -22,7 +21,6 @@ require('packer').startup(function()
     use 'editorconfig/editorconfig-vim'
     use 'tpope/vim-surround'
     use 'windwp/nvim-autopairs'
-    use 'tomtom/tcomment_vim'
     use {
         'nvim-treesitter/nvim-treesitter',
         requires = {
@@ -30,6 +28,7 @@ require('packer').startup(function()
         },
         run = ':TSUpdate'
     }
+    use 'b3nj5m1n/kommentary'
     use {
         'iamcco/markdown-preview.nvim',
         run = 'cd app && yarn install',
