@@ -8,12 +8,12 @@
         "description": "Log output to console"
     },
     "destruct object": {
-        "prefix": "do",
+        "prefix": "co",
         "scope": "javascript,typescript,typescriptreact,javascriptreact",
         "body": "const { $2 } = $1;"
     },
     "destruct array": {
-        "prefix": "da",
+        "prefix": "ca",
         "scope": "javascript,typescript,typescriptreact,javascriptreact",
         "body": "const [$2] = $1;"
     },
@@ -62,16 +62,6 @@
         "scope": "javascript,typescript,typescriptreact,javascriptreact",
         "body": "export * from $1"
     },
-    "eslint disable line": {
-        "prefix": "edl",
-        "scope": "javascript, typescript, javascriptreact, typescriptreact",
-        "body": "// eslint-disable-line"
-    },
-    "eslint disable next line": {
-        "prefix": "ednl",
-        "scope": "javascript, typescript, javascriptreact, typescriptreact",
-        "body": "// eslint-disable-next-line"
-    },
     "if statement": {
         "prefix": "iff",
         "scope": "javascript, typescript, javascriptreact, typescriptreact",
@@ -103,17 +93,8 @@
             "}"
         ]
     },
-    "function() {}": {
-        "prefix": "fun",
-        "scope": "javascript, typescript, javascriptreact, typescriptreact",
-        "body": [
-            "function ${1:name}(${2:arguments}) {",
-            "\t${3}",
-            "}"
-        ]
-    },
     "async function() {}": {
-        "prefix": "afun",
+        "prefix": "af",
         "scope": "javascript, typescript, javascriptreact, typescriptreact",
         "body": [
             "async function ${1:name}(${2:arguments}) {",
@@ -122,7 +103,7 @@
         ]
     },
     "useEffect async function call": {
-        "prefix": "ufun",
+        "prefix": "uf",
         "scope": "javascript, typescript, javascriptreact, typescriptreact",
         "body": [
             "useEffect(() => {",
@@ -163,11 +144,6 @@
             "\t)",
             "}",
             "",
-            "$TM_FILENAME_BASE.defaultProps = {",
-            "\t",
-            "}",
-            "",
-            "",
             "$TM_FILENAME_BASE.propTypes = {",
             "\t",
             "}",
@@ -176,9 +152,9 @@
         ]
     },
     "propTypes snippets": {
-        "prefix": "ptr",
+        "prefix": "pt",
         "scope": "javascript, typescript, javascriptreact, typescriptreact",
-        "body": "${1:prop}: PropTypes.${2:type}.isRequired"
+        "body": "${1:prop}: PropTypes.${2:type}"
     },
     "react single page component": {
         "prefix": "rsc",
