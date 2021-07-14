@@ -21,6 +21,7 @@ require('packer').startup(function()
     use 'editorconfig/editorconfig-vim'
     use 'tpope/vim-surround'
     use 'windwp/nvim-autopairs'
+    use 'famiu/feline.nvim'
     use {
         'nvim-treesitter/nvim-treesitter',
         requires = {
@@ -46,14 +47,8 @@ require('packer').startup(function()
     }
     use 'digitaltoad/vim-pug'
     use 'kyazdani42/nvim-web-devicons'
-
     use {
         'akinsho/nvim-bufferline.lua',
-        requires = {'kyazdani42/nvim-web-devicons'}
-    }
-    use {
-        'glepnir/galaxyline.nvim',
-        branch = 'main',
         requires = {'kyazdani42/nvim-web-devicons'}
     }
     use {
@@ -83,8 +78,6 @@ vim.bo.expandtab = true
 vim.bo.shiftwidth = 2
 vim.bo.tabstop = 2
 vim.bo.softtabstop = -1
-vim.o.smarttab = true
--- indent settings
 vim.bo.smartindent = true
 vim.o.inccommand = 'nosplit'
 vim.o.textwidth = 80
@@ -125,7 +118,7 @@ vim.o.showmatch = true
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.o.foldlevelstart = 99
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = 'menuone,noinsert'
 -- colorscheme settings
 vim.o.background = 'dark'
 vim.o.termguicolors = true
@@ -165,7 +158,7 @@ vim.api.nvim_exec(
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
-]],
+  ]],
   false
 )
 
@@ -270,7 +263,7 @@ require('nvim-treesitter.configs').setup {
     enable = true, -- false will disable the whole extension
   },
   indent = {
-    enable = true,
+    enable = false,
   },
   textobjects = {
     select = {
@@ -280,28 +273,8 @@ require('nvim-treesitter.configs').setup {
         -- You can use the capture groups defined in textobjects.scm
         ['af'] = '@function.outer',
         ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
-      },
-    },
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
-      },
-      goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
-      },
-      goto_previous_start = {
-        ['[m'] = '@function.outer',
-        ['[['] = '@class.outer',
-      },
-      goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
+        ['ac'] = '@conditional.outer',
+        ['ic'] = '@conditional.inner',
       },
     },
   },
@@ -326,25 +299,22 @@ local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
-end
+-- Load vsnip snippets
+vim.g.vsnip_snippet_dir = '$HOME/.config/nvim/snippets'
 
 -- Use (s-)tab to:
---- move to prev/next item in completion menuone
+--- confirm item in completion menuone
 --- jump to prev/next snippet's placeholder
 _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
+    return vim.fn['compe#confirm']()
   elseif vim.fn['vsnip#available'](1) == 1 then
     return t "<Plug>(vsnip-expand-or-jump)"
-  elseif check_back_space() then
-    return t "<Tab>"
   else
-    return vim.fn['compe#complete']()
+    return t "<Tab>"
   end
 end
+
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-p>"
@@ -373,11 +343,17 @@ require('compe').setup {
   },
 }
 
--- Colorizer
-require'colorizer'.setup (
-    {'css'; 'html'; 'pug'; 'javascript'; 'javascriptreact'; 'less'},
-    {css = true}
-)
+-- Nvim-colorizer
+require'colorizer'.setup ({
+  css = {
+    css = true
+  },
+  'html',
+  'pug',
+  'javascript',
+  'javascriptreact',
+  'less'
+})
 
 -- Nvim-web-devicons
 require'nvim-web-devicons'.setup {
@@ -441,218 +417,10 @@ vim.g.user_emmet_settings = {
     extends = 'jsx'
   },
   typescript = {
-    extends = 'tsx'
-  }
+    extends = 'jsx'
+  },
 }
-vim.cmd [[autocmd FileType html,css,javascript,typescript EmmetInstall]]
+vim.cmd [[autocmd FileType html,css,javascript,typescript,javascriptreact,typescriptreact EmmetInstall]]
 
 -- Statusline settings
-local gl = require('galaxyline')
-local colors = require('galaxyline.theme').default
-local condition = require('galaxyline.condition')
-local gls = gl.section
-gl.short_line_list = {'NvimTree','vista','dbui','packer'}
-
-gls.left[1] = {
-  RainbowRed = {
-    provider = function() return '▊ ' end,
-    highlight = {colors.blue,colors.bg}
-  },
-}
-gls.left[2] = {
-  ViMode = {
-    provider = function()
-      -- auto change color according the vim mode
-      local mode_color = {n = colors.red, i = colors.green,v=colors.blue,
-                          [''] = colors.blue,V=colors.blue,
-                          c = colors.magenta,no = colors.red,s = colors.orange,
-                          S=colors.orange,[''] = colors.orange,
-                          ic = colors.yellow,R = colors.violet,Rv = colors.violet,
-                          cv = colors.red,ce=colors.red, r = colors.cyan,
-                          rm = colors.cyan, ['r?'] = colors.cyan,
-                          ['!']  = colors.red,t = colors.red}
-     vim.api.nvim_command('hi GalaxyViMode guifg='..mode_color[vim.fn.mode()] ..' guibg='..colors.bg)
-      return '  '
-    end,
-  },
-}
-gls.left[3] = {
-  FileSize = {
-    provider = 'FileSize',
-    condition = condition.buffer_not_empty,
-    highlight = {colors.fg,colors.bg}
-  }
-}
-gls.left[4] ={
-  FileIcon = {
-    provider = 'FileIcon',
-    condition = condition.buffer_not_empty,
-    highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.bg},
-  },
-}
-
-gls.left[5] = {
-  FileName = {
-    provider = 'FileName',
-    condition = condition.buffer_not_empty,
-    highlight = {colors.fg,colors.bg,'bold'}
-  }
-}
-
-gls.left[6] = {
-  LineInfo = {
-    provider = 'LineColumn',
-    separator = ' ',
-    separator_highlight = {'NONE',colors.bg},
-    highlight = {colors.fg,colors.bg},
-  },
-}
-
-gls.left[7] = {
-  PerCent = {
-    provider = 'LinePercent',
-    separator = ' ',
-    separator_highlight = {'NONE',colors.bg},
-    highlight = {colors.fg,colors.bg,'bold'},
-  }
-}
-
-gls.left[8] = {
-  DiagnosticError = {
-    provider = 'DiagnosticError',
-    icon = '  ',
-    highlight = {colors.red,colors.bg}
-  }
-}
-gls.left[9] = {
-  DiagnosticWarn = {
-    provider = 'DiagnosticWarn',
-    icon = '  ',
-    highlight = {colors.yellow,colors.bg},
-  }
-}
-
-gls.left[10] = {
-  DiagnosticHint = {
-    provider = 'DiagnosticHint',
-    icon = '  ',
-    highlight = {colors.cyan,colors.bg},
-  }
-}
-
-gls.left[11] = {
-  DiagnosticInfo = {
-    provider = 'DiagnosticInfo',
-    icon = '  ',
-    highlight = {colors.blue,colors.bg},
-  }
-}
-
-gls.mid[1] = {
-  ShowLspClient = {
-    provider = 'GetLspClient',
-    condition = function ()
-      local tbl = {['dashboard'] = true,['']=true}
-      if tbl[vim.bo.filetype] then
-        return false
-      end
-      return true
-    end,
-    icon = ' LSP:',
-    highlight = {colors.yellow,colors.bg,'bold'}
-  }
-}
-
-gls.right[1] = {
-  FileEncode = {
-    provider = 'FileEncode',
-    condition = condition.hide_in_width,
-    separator = ' ',
-    separator_highlight = {'NONE',colors.bg},
-    highlight = {colors.green,colors.bg,'bold'}
-  }
-}
-
-gls.right[2] = {
-  FileFormat = {
-    provider = 'FileFormat',
-    condition = condition.hide_in_width,
-    separator = ' ',
-    separator_highlight = {'NONE',colors.bg},
-    highlight = {colors.green,colors.bg,'bold'}
-  }
-}
-
-gls.right[3] = {
-  GitIcon = {
-    provider = function() return '  ' end,
-    condition = condition.check_git_workspace,
-    separator = ' ',
-    separator_highlight = {'NONE',colors.bg},
-    highlight = {colors.violet,colors.bg,'bold'},
-  }
-}
-
-gls.right[4] = {
-  GitBranch = {
-    provider = 'GitBranch',
-    condition = condition.check_git_workspace,
-    highlight = {colors.violet,colors.bg,'bold'},
-  }
-}
-
-gls.right[5] = {
-  DiffAdd = {
-    provider = 'DiffAdd',
-    condition = condition.hide_in_width,
-    icon = '  ',
-    highlight = {colors.green,colors.bg},
-  }
-}
-gls.right[6] = {
-  DiffModified = {
-    provider = 'DiffModified',
-    condition = condition.hide_in_width,
-    icon = ' 柳',
-    highlight = {colors.orange,colors.bg},
-  }
-}
-gls.right[7] = {
-  DiffRemove = {
-    provider = 'DiffRemove',
-    condition = condition.hide_in_width,
-    icon = '  ',
-    highlight = {colors.red,colors.bg},
-  }
-}
-
-gls.right[8] = {
-  RainbowBlue = {
-    provider = function() return ' ▊' end,
-    highlight = {colors.blue,colors.bg}
-  },
-}
-
-gls.short_line_left[1] = {
-  BufferType = {
-    provider = 'FileTypeName',
-    separator = ' ',
-    separator_highlight = {'NONE',colors.bg},
-    highlight = {colors.blue,colors.bg,'bold'}
-  }
-}
-
-gls.short_line_left[2] = {
-  SFileName = {
-    provider =  'SFileName',
-    condition = condition.buffer_not_empty,
-    highlight = {colors.fg,colors.bg,'bold'}
-  }
-}
-
-gls.short_line_right[1] = {
-  BufferIcon = {
-    provider= 'BufferIcon',
-    highlight = {colors.fg,colors.bg}
-  }
-}
+require('feline').setup()
