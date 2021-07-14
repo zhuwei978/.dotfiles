@@ -20,8 +20,10 @@ require('packer').startup(function()
     use 'mattn/emmet-vim'
     use 'editorconfig/editorconfig-vim'
     use 'tpope/vim-surround'
+    use "akinsho/nvim-toggleterm.lua"
     use 'windwp/nvim-autopairs'
     use 'famiu/feline.nvim'
+    use "lukas-reineke/indent-blankline.nvim"
     use {
         'nvim-treesitter/nvim-treesitter',
         requires = {
@@ -83,7 +85,7 @@ vim.o.inccommand = 'nosplit'
 vim.o.textwidth = 80
 -- show list chars
 vim.o.list = false
-vim.o.listchars = "tab:»·,space:+,trail:·,extends:→,precedes:←"
+vim.o.listchars = "tab:»·,space:⋅,trail:+,extends:→,precedes:←"
 -- show lines below cursor
 vim.o.scrolloff = 5
 vim.o.sidescrolloff = 5
@@ -100,7 +102,7 @@ vim.wo.wrap = false
 vim.o.wildignore = '*.o,*~,*.pyc'
 -- switch buffer without saving them
 vim.o.hidden = true
-vim.o.mouse = 'a'
+vim.o.mouse = 'nv'
 vim.o.breakindent = true
 vim.cmd [[set undofile]]
 vim.o.updatetime = 250
@@ -424,3 +426,26 @@ vim.cmd [[autocmd FileType html,css,javascript,typescript,javascriptreact,typesc
 
 -- Statusline settings
 require('feline').setup()
+
+-- Indent-blankline settings
+vim.g.indent_blankline_char = "⋅"
+vim.g.indent_blankline_show_first_indent_level = false
+vim.g.indent_blankline_buftype_exclude = {"terminal", "nofile"}
+vim.g.indent_blankline_show_trailing_blankline_indent = false
+vim.g.indent_blankline_show_current_context = true
+vim.g.indent_blankline_context_patterns = {
+  "class",
+  "function",
+  "method",
+  "block",
+  "list_literal",
+  "selector",
+  "^if",
+  "^table",
+  "if_statement",
+  "while",
+  "for"
+}
+
+-- ToggleTerm
+require("toggleterm").setup{}
