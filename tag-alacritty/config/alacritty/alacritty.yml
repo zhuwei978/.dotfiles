@@ -22,10 +22,10 @@ font:
     style: Bold Italic
   size: 16.0
   offset:
-    y: 10
+    y: 16
     x: 0
   glyph_offset:
-    y: 5
+    y: 8
     x: 0
   use_thin_strokes: true
 
