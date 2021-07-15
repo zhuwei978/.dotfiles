@@ -16,52 +16,54 @@ vim.api.nvim_exec([[
 
 local use = require('packer').use
 require('packer').startup(function()
-    use 'wbthomason/packer.nvim'
-    use 'mattn/emmet-vim'
-    use 'editorconfig/editorconfig-vim'
-    use 'tpope/vim-surround'
-    use "akinsho/nvim-toggleterm.lua"
-    use 'windwp/nvim-autopairs'
-    use 'famiu/feline.nvim'
-    use "lukas-reineke/indent-blankline.nvim"
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        requires = {
-            'nvim-treesitter/nvim-treesitter-textobjects',
-        },
-        run = ':TSUpdate'
-    }
-    use 'b3nj5m1n/kommentary'
-    use {
-        'iamcco/markdown-preview.nvim',
-        run = 'cd app && yarn install',
-    }
-    use 'dracula/vim'
-    use 'norcalli/nvim-colorizer.lua'
-    use 'kyazdani42/nvim-tree.lua'
-    use {
-        'nvim-telescope/telescope.nvim',
-        requires = {
-            {'nvim-lua/popup.nvim'},
-            {'nvim-lua/plenary.nvim'},
-            {'nvim-telescope/telescope-fzy-native.nvim'},
-        },
-    }
-    use 'digitaltoad/vim-pug'
-    use 'kyazdani42/nvim-web-devicons'
-    use {
-        'akinsho/nvim-bufferline.lua',
-        requires = {'kyazdani42/nvim-web-devicons'}
-    }
-    use {
-        'lewis6991/gitsigns.nvim',
-        requires = {'nvim-lua/plenary.nvim'},
-    }
-    use 'neovim/nvim-lspconfig'
-    use 'kabouzeid/nvim-lspinstall'
-    use 'hrsh7th/nvim-compe'
-    use 'hrsh7th/vim-vsnip'
-    use 'kdheepak/lazygit.nvim'
+  use 'tweekmonster/startuptime.vim'
+  use 'wbthomason/packer.nvim'
+  use 'mattn/emmet-vim'
+  use 'editorconfig/editorconfig-vim'
+  use 'tpope/vim-surround'
+  use "akinsho/nvim-toggleterm.lua"
+  use 'windwp/nvim-autopairs'
+  use 'nvim-lua/lsp-status.nvim'
+  use 'glepnir/lspsaga.nvim'
+  use {
+    'hoob3rt/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    requires = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
+    run = ':TSUpdate'
+  }
+  use 'b3nj5m1n/kommentary'
+  use {
+    'iamcco/markdown-preview.nvim',
+    run = 'cd app && yarn install',
+  }
+  use 'dracula/vim'
+  use 'norcalli/nvim-colorizer.lua'
+  use 'kyazdani42/nvim-tree.lua'
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      {'nvim-lua/popup.nvim'},
+      {'nvim-lua/plenary.nvim'},
+      {'nvim-telescope/telescope-fzy-native.nvim'},
+    },
+  }
+  use 'digitaltoad/vim-pug'
+  use 'kyazdani42/nvim-web-devicons'
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = {'nvim-lua/plenary.nvim'},
+  }
+  use 'neovim/nvim-lspconfig'
+  use 'kabouzeid/nvim-lspinstall'
+  use 'hrsh7th/nvim-compe'
+  use 'hrsh7th/vim-vsnip'
+  use 'hrsh7th/vim-vsnip-integ'
+  use 'kdheepak/lazygit.nvim'
 end)
 
 -- Disable some built-in plugins we don't want
@@ -79,12 +81,10 @@ vim.g.python3_host_prog = '/usr/local/bin/python3'
 vim.bo.expandtab = true
 vim.bo.shiftwidth = 2
 vim.bo.tabstop = 2
-vim.bo.softtabstop = -1
-vim.bo.smartindent = true
 vim.o.inccommand = 'nosplit'
 vim.o.textwidth = 80
 -- show list chars
-vim.o.list = false
+vim.o.list = true
 vim.o.listchars = "tab:»·,space:⋅,trail:+,extends:→,precedes:←"
 -- show lines below cursor
 vim.o.scrolloff = 5
@@ -97,7 +97,7 @@ vim.o.hlsearch = false
 vim.wo.number = true
 vim.wo.relativenumber = true
 -- faster macros
-vim.o.lazyredraw = true
+-- vim.o.lazyredraw = true
 vim.wo.wrap = false
 vim.o.wildignore = '*.o,*~,*.pyc'
 -- switch buffer without saving them
@@ -120,7 +120,7 @@ vim.o.showmatch = true
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.o.foldlevelstart = 99
-vim.o.completeopt = 'menuone,noinsert'
+vim.o.completeopt = 'menuone,noselect,noinsert'
 -- colorscheme settings
 vim.o.background = 'dark'
 vim.o.termguicolors = true
@@ -128,13 +128,13 @@ vim.cmd [[colorscheme dracula]]
 
 -- Gitsigns
 require('gitsigns').setup {
-    signs = {
-        add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
-        change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-        delete       = {hl = 'GitSignsDelete', text = '│', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-        topdelete    = {hl = 'GitSignsDelete', text = '│', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
-        changedelete = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
-      },
+  signs = {
+    add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+    change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    delete       = {hl = 'GitSignsDelete', text = '│', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    topdelete    = {hl = 'GitSignsDelete', text = '│', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    changedelete = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+  },
 }
 
 -- Telescope
@@ -163,9 +163,6 @@ vim.api.nvim_exec(
   ]],
   false
 )
-
--- Y yank until the end of line
-vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
 
 -- LSP settings
 local on_attach = function(_, bufnr)
@@ -265,7 +262,7 @@ require('nvim-treesitter.configs').setup {
     enable = true, -- false will disable the whole extension
   },
   indent = {
-    enable = false,
+    enable = true,
   },
   textobjects = {
     select = {
@@ -369,19 +366,6 @@ require'nvim-web-devicons'.setup {
   default = true,
 }
 
--- Nvim-bufferline
-vim.api.nvim_set_keymap('n', ']b', '<cmd>BufferLineCycleNext<cr>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '[b', '<cmd>BufferLineCyclePrev<cr>', { noremap = true, silent = true })
-
-require('bufferline').setup{
-    options = {
-      modified_icon = '✥',
-      buffer_close_icon = '',
-      mappings = true,
-      always_show_bufferline = true,
-    }
-}
-
 -- Nvim-tree
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 vim.g.nvim_tree_follow = 1
@@ -425,27 +409,32 @@ vim.g.user_emmet_settings = {
 vim.cmd [[autocmd FileType html,css,javascript,typescript,javascriptreact,typescriptreact EmmetInstall]]
 
 -- Statusline settings
-require('feline').setup()
-
--- Indent-blankline settings
-vim.g.indent_blankline_char = "⋅"
-vim.g.indent_blankline_show_first_indent_level = false
-vim.g.indent_blankline_buftype_exclude = {"terminal", "nofile"}
-vim.g.indent_blankline_show_trailing_blankline_indent = false
-vim.g.indent_blankline_show_current_context = true
-vim.g.indent_blankline_context_patterns = {
-  "class",
-  "function",
-  "method",
-  "block",
-  "list_literal",
-  "selector",
-  "^if",
-  "^table",
-  "if_statement",
-  "while",
-  "for"
+require'lualine'.setup {
+  options = {
+    theme = 'dracula',
+    component_separators = "",
+    section_separators = "",
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'filename'},
+    lualine_c = {'branch', 'diff'},
+    lualine_x = {
+      {
+        'diagnostics',
+        sources = {'nvim_lsp'},
+      },
+      'fileformat',{'encoding', upper = true},
+    },
+    lualine_y = {'filetype'},
+    lualine_z = {'location'},
+  },
 }
 
 -- ToggleTerm
-require("toggleterm").setup{}
+require("toggleterm").setup{
+  diretion = 'float'
+}
+
+-- Lspsaga
+require'lspsaga'.init_lsp_saga()
