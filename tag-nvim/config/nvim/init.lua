@@ -22,7 +22,6 @@ require('packer').startup(function()
   use 'mattn/emmet-vim'
   use 'editorconfig/editorconfig-vim'
   use 'tpope/vim-surround'
-  use 'numtostr/FTerm.nvim'
   use 'windwp/nvim-autopairs'
   use 'glepnir/lspsaga.nvim'
   use {
@@ -281,7 +280,7 @@ require('nvim-treesitter.configs').setup {
 }
 
 -- lazygit
-vim.api.nvim_set_keymap('n', '<leader>lg', [[<cmd>LazyGit<cr>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>lg', [[<cmd>LazyGit<cr>]], { noremap = true, silent = true })
 
 -- Nvim-autopairs
 require('nvim-autopairs').setup()
@@ -432,12 +431,12 @@ require'lualine'.setup {
   },
 }
 
--- FTerm
-require'FTerm'.setup()
+-- Terminal
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
-map('n', '<C-t>', [[<CMD>lua require("FTerm").toggle()<CR>]], opts)
-map('t', '<C-t>', [[<C-\><C-n><CMD>lua require("FTerm").toggle()<CR>]], opts)
+map('t', '<ESC>', [[<C-\><C-n>]], opts)
+map('n', '<leader>nt', [[<CMD>tabnew | term<CR>]], opts)
+map('n', '<leader>lg', [[<CMD>tabnew | term lazygit<CR>]], opts)
 
 -- Lspsaga
 require'lspsaga'.init_lsp_saga{
