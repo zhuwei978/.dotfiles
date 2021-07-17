@@ -18,6 +18,7 @@ local use = require('packer').use
 require('packer').startup(function()
   use 'tweekmonster/startuptime.vim'
   use 'wbthomason/packer.nvim'
+  use "rafamadriz/neon"
   use 'mattn/emmet-vim'
   use 'editorconfig/editorconfig-vim'
   use 'tpope/vim-surround'
@@ -41,7 +42,6 @@ require('packer').startup(function()
     'iamcco/markdown-preview.nvim',
     run = 'cd app && yarn install',
   }
-  use 'dracula/vim'
   use 'norcalli/nvim-colorizer.lua'
   use 'kyazdani42/nvim-tree.lua'
   use {
@@ -124,7 +124,7 @@ vim.o.completeopt = 'menuone,noselect,noinsert'
 -- colorscheme settings
 vim.o.background = 'dark'
 vim.o.termguicolors = true
-vim.cmd [[colorscheme dracula]]
+vim.cmd[[colorscheme neon]]
 
 -- Kcommentary
 require('kommentary.config').configure_language("default", {
@@ -417,7 +417,7 @@ vim.cmd [[autocmd FileType html,css,javascript,typescript,javascriptreact,typesc
 -- Statusline settings
 require'lualine'.setup {
   options = {
-    theme = 'dracula',
+    theme = "neon",
     component_separators = "",
     section_separators = "",
   },
@@ -430,10 +430,11 @@ require'lualine'.setup {
         'diagnostics',
         sources = {'nvim_lsp'},
       },
-      'fileformat',{'encoding', upper = true},
+      'fileformat',
+      'encoding',
     },
     lualine_y = {'filetype'},
-    lualine_z = {'location'},
+    lualine_z = {'location', 'progress'},
   },
 }
 
