@@ -18,7 +18,7 @@ local use = require('packer').use
 require('packer').startup(function()
   use 'tweekmonster/startuptime.vim'
   use 'wbthomason/packer.nvim'
-  use "rafamadriz/neon"
+  use 'dracula/vim'
   use 'mattn/emmet-vim'
   use 'editorconfig/editorconfig-vim'
   use 'tpope/vim-surround'
@@ -122,7 +122,7 @@ vim.opt.completeopt = 'menuone,noselect,noinsert'
 -- colorscheme settings
 vim.opt.background = 'dark'
 vim.opt.termguicolors = true
-vim.cmd[[colorscheme neon]]
+vim.cmd[[colorscheme dracula]]
 
 -- Kcommentary
 require('kommentary.config').configure_language("default", {
@@ -264,6 +264,7 @@ require('nvim-treesitter.configs').setup {
   ensure_installed = "maintained",
   highlight = { enable = true },
   indent = { enable = true },
+  autopairs = { enable = true },
   textobjects = {
     select = {
       enable = true,
@@ -410,7 +411,7 @@ vim.cmd [[autocmd FileType html,css,javascript,typescript,javascriptreact,typesc
 -- Statusline settings
 require'lualine'.setup {
   options = {
-    theme = "neon",
+    theme = "dracula",
     component_separators = "",
     section_separators = "",
   },
