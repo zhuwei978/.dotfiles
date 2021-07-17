@@ -110,7 +110,7 @@ vim.wo.signcolumn = 'yes:1'
 vim.o.shortmess = vim.o.shortmess .. 'c'
 -- Leader key
 vim.g.mapleader = ' '
-vim.o.pumheight = 15
+vim.o.pumheight = 10
 -- split in reasonable positions
 vim.o.splitright = true
 vim.o.splitbelow = true
@@ -264,12 +264,8 @@ end
 -- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {
   ensure_installed = "maintained",
-  highlight = {
-    enable = true, -- false will disable the whole extension
-  },
-  indent = {
-    enable = true,
-  },
+  highlight = { enable = true },
+  indent = { enable = true },
   textobjects = {
     select = {
       enable = true,
@@ -292,7 +288,6 @@ vim.api.nvim_set_keymap('n', '<leader>lg', [[<cmd>LazyGit<cr>]], { noremap = tru
 require('nvim-autopairs').setup()
 require("nvim-autopairs.completion.compe").setup({
   map_cr = true, --  map <CR> on insert mode
-  map_complete = true -- it will auto insert `(` after select function or method item
 })
 
 -- Compe and Vsnip setup
