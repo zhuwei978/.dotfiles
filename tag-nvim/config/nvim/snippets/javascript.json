@@ -1,1 +1,154 @@
-{}
+{
+    "Print to console": {
+        "prefix": "clg",
+        "body": [
+            "console.log($1);"
+        ],
+        "description": "Log output to console"
+    },
+    "destruct object": {
+        "prefix": "co",
+        "body": "const { $2 } = $1;"
+    },
+    "destruct array": {
+        "prefix": "ca",
+        "body": "const [$2] = $1;"
+    },
+    "import $2 from $1": {
+        "prefix": "imp",
+        "body": "import $2 from '$1'"
+    },
+    "import { $2 } from $1": {
+        "prefix": "imd",
+        "body": "import { $2 } from '$1'"
+    },
+    "import * as $2 from $1": {
+        "prefix": "ima",
+        "body": "import * as $2 from '$1'"
+    },
+    "import 'xxx.less'": {
+        "prefix": "imn",
+        "body": "import '${1}'"
+    },
+    "export const $1 = $2": {
+        "prefix": "exc",
+        "body": "export const $1 = $2"
+    },
+    "export interface": {
+        "prefix": "exi",
+        "body": "export interface $1 {$2}"
+    },
+    "export default": {
+        "prefix": "exp",
+        "body": "export default $1;"
+    },
+    "export {$2} from $1": {
+        "prefix": "exd",
+        "body": "export { $2 } from $1;"
+    },
+    "export * from $1": {
+        "prefix": "exa",
+        "body": "export * from $1"
+    },
+    "if statement": {
+        "prefix": "iff",
+        "body": [
+            "if (${1}) {",
+            "\t${2}",
+            "}"
+        ]
+    },
+    "try...catch...": {
+        "prefix": "tc",
+        "body": [
+            "try {",
+            "\t${2}",
+            "} catch (e) {",
+            "\t${1}",
+            "}"
+        ]
+    },
+    "try...finally...": {
+        "prefix": "tf",
+        "body": [
+            "try {",
+            "\t${1}",
+            "} finally {",
+            "\t${2}",
+            "}"
+        ]
+    },
+    "async function() {}": {
+        "prefix": "af",
+        "body": [
+            "async function ${1:name}(${2:arguments}) {",
+            "\t${3}",
+            "}"
+        ]
+    },
+    "useEffect async function call": {
+        "prefix": "uf",
+        "body": [
+            "useEffect(() => {",
+            "\tasync function ${2:funcName}() {",
+            "\t\t${3:funcBody}",
+            "\t}",
+            "",
+            "\t${2:funcName}();",
+            "}, [${1:dep}])"
+        ],
+        "description": "useEffect async function call"
+    },
+    "react functional component": {
+        "prefix": "rfc",
+        "body": [
+            "import React from 'react'",
+            "",
+            "function $TM_FILENAME_BASE() {",
+            "\treturn (",
+            "\t\t${1}",
+            "\t)",
+            "}",
+            "",
+            "export default $TM_FILENAME_BASE;"
+        ]
+    },
+    "react functional component with prop-types": {
+        "prefix": "rfcp",
+        "body": [
+            "import React from 'react'",
+            "import PropTypes from 'prop-types'",
+            "",
+            "function $TM_FILENAME_BASE() {",
+            "\treturn (",
+            "\t\t${1}",
+            "\t)",
+            "}",
+            "",
+            "$TM_FILENAME_BASE.propTypes = {",
+            "\t",
+            "}",
+            "",
+            "export default $TM_FILENAME_BASE;"
+        ]
+    },
+    "propTypes snippets": {
+        "prefix": "pt",
+        "body": "${1:prop}: PropTypes.${2:type}"
+    },
+    "react single page component": {
+        "prefix": "rsc",
+        "body": [
+            "import React from 'react'",
+            "import { render } from 'react-dom'",
+            "",
+            "function App() {",
+            "\treturn (",
+            "\t\t${1}",
+            "\t)",
+            "}",
+            "",
+            "render(<App />, document.querySelector('#app'))"
+        ]
+    }
+}
