@@ -61,7 +61,6 @@ require('packer').startup(function()
   use 'hrsh7th/nvim-compe'
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
-  use 'kdheepak/lazygit.nvim'
 end)
 
 -- Disable some built-in plugins we don't want
@@ -278,9 +277,6 @@ require('nvim-treesitter.configs').setup {
     },
   },
 }
-
--- lazygit
--- vim.api.nvim_set_keymap('n', '<leader>lg', [[<cmd>LazyGit<cr>]], { noremap = true, silent = true })
 
 -- Nvim-autopairs
 require('nvim-autopairs').setup()
