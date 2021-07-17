@@ -22,9 +22,8 @@ require('packer').startup(function()
   use 'mattn/emmet-vim'
   use 'editorconfig/editorconfig-vim'
   use 'tpope/vim-surround'
-  use "akinsho/nvim-toggleterm.lua"
+  use 'numtostr/FTerm.nvim'
   use 'windwp/nvim-autopairs'
-  use 'nvim-lua/lsp-status.nvim'
   use 'glepnir/lspsaga.nvim'
   use {
     'hoob3rt/lualine.nvim',
@@ -78,52 +77,51 @@ vim.g.python_host_prog = '/usr/bin/python'
 vim.g.python3_host_prog = '/usr/local/bin/python3'
 
 -- tab config
-vim.bo.expandtab = true
-vim.bo.shiftwidth = 2
-vim.bo.tabstop = 2
-vim.o.inccommand = 'nosplit'
-vim.o.textwidth = 80
--- show list chars
-vim.o.list = true
-vim.o.listchars = "tab:»·,space:⋅,trail:+,extends:→,precedes:←"
--- show lines below cursor
-vim.o.scrolloff = 5
-vim.o.sidescrolloff = 5
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.shiftround = true
+vim.opt.inccommand = 'nosplit'
+vim.opt.textwidth = 80
+-- list chars
+vim.opt.list = true
+vim.opt.listchars = "tab:»·,space:⋅,trail:+,extends:→,precedes:←"
+-- lines below cursor
+vim.opt.scrolloff = 5
+vim.opt.sidescrolloff = 5
 -- better searching
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.hlsearch = false
--- number display in column
-vim.wo.number = true
-vim.wo.relativenumber = true
--- faster macros
--- vim.o.lazyredraw = true
-vim.wo.wrap = false
-vim.o.wildignore = '*.o,*~,*.pyc'
--- switch buffer without saving them
-vim.o.hidden = true
-vim.o.mouse = 'nv'
-vim.o.breakindent = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = false
+-- number display in .opt.umn
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.wrap = false
+vim.opt.wildignore = '*.o,*~,*.pyc'
+-- switch buffer wit.opt.t saving them
+vim.opt.hidden = true
+vim.opt.mouse = 'nv'
+vim.opt.breakindent = true
 vim.cmd [[set undofile]]
-vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes:1'
-vim.o.shortmess = vim.o.shortmess .. 'c'
+vim.opt.updatetime = 250
+vim.opt.signcolumn = 'yes:1'
+vim.opt.shortmess = vim.o.shortmess .. 'c'
 -- Leader key
 vim.g.mapleader = ' '
-vim.o.pumheight = 10
--- split in reasonable positions
-vim.o.splitright = true
-vim.o.splitbelow = true
+vim.opt.pumheight = 10
+-- split in rea.opt.able positions
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 -- matching parenthesis
-vim.o.showmatch = true
--- folds
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.o.foldlevelstart = 99
-vim.o.completeopt = 'menuone,noselect,noinsert'
+vim.opt.showmatch = true
+-- fold
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldlevelstart = 99
+vim.opt.completeopt = 'menuone,noselect,noinsert'
 -- colorscheme settings
-vim.o.background = 'dark'
-vim.o.termguicolors = true
+vim.opt.background = 'dark'
+vim.opt.termguicolors = true
 vim.cmd[[colorscheme neon]]
 
 -- Kcommentary
@@ -433,8 +431,12 @@ require'lualine'.setup {
   },
 }
 
--- ToggleTerm
-require("toggleterm").setup{}
+-- FTerm
+require'FTerm'.setup()
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+map('n', '<C-t>', [[<CMD>lua require("FTerm").toggle()<CR>]], opts)
+map('t', '<C-t>', [[<C-\><C-n><CMD>lua require("FTerm").toggle()<CR>]], opts)
 
 -- Lspsaga
 require'lspsaga'.init_lsp_saga{
