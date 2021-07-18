@@ -520,7 +520,9 @@ require('formatter').setup({
   logging = true,
   filetype = {
     javascript = { prettierFormatter },
+    javascriptreact = { prettierFormatter },
     typescript = { prettierFormatter },
+    typescriptreact = { prettierFormatter },
     css = { prettierFormatter },
     less = { prettierFormatter },
     yaml = { prettierFormatter },
