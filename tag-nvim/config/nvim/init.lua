@@ -167,7 +167,7 @@ vim.api.nvim_exec(
 )
 
 -- LSP settings
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local opts = { noremap = true, silent = true }
@@ -184,6 +184,17 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
   -- vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+
+    -- Set autocommands conditional on server_capabilities
+  if client.resolved_capabilities.document_highlight then
+    vim.api.nvim_exec([[
+      augroup lsp_document_highlight
+      autocmd! * <buffer>
+      autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+    ]], false)
+  end
 end
 
 -- Configure lua language server for neovim development
