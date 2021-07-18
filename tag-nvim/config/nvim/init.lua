@@ -404,6 +404,20 @@ vim.g.user_emmet_settings = {
 vim.cmd [[autocmd FileType html,css,javascript,typescript,javascriptreact,typescriptreact EmmetInstall]]
 
 -- Statusline settings
+function CurrentLsp()
+    local msg = 'No Active Lsp'
+    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+    local clients = vim.lsp.get_active_clients()
+    if next(clients) == nil then return msg end
+    for _, client in ipairs(clients) do
+      local filetypes = client.config.filetypes
+      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+        return client.name
+      end
+    end
+    return msg
+end
+
 require'lualine'.setup {
   options = {
     theme = "dracula",
@@ -413,18 +427,22 @@ require'lualine'.setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'filename'},
-    lualine_c = {'branch', 'diff'},
+    lualine_c = {'branch', 'diff', },
     lualine_x = {
+      {CurrentLsp, icon = ' LSP:'},
       {
         'diagnostics',
         sources = {'nvim_lsp'},
       },
       'fileformat',
-      'encoding',
+      {'o:encoding', upper = true }
     },
     lualine_y = {'filetype'},
     lualine_z = {'location', 'progress'},
   },
+  tabline = {
+    lualine_a = {"filename"},
+  }
 }
 
 -- Terminal
