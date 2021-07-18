@@ -21,6 +21,7 @@ require('packer').startup(function()
   use 'dracula/vim'
   use 'mattn/emmet-vim'
   use 'editorconfig/editorconfig-vim'
+  use 'mhartington/formatter.nvim'
   use 'tpope/vim-surround'
   use 'windwp/nvim-autopairs'
   use 'glepnir/lspsaga.nvim'
@@ -506,3 +507,36 @@ vim.api.nvim_set_keymap('n', 'K', [[<cmd>lua require('lspsaga.hover').render_hov
 vim.api.nvim_set_keymap('n', '<C-f>', [[<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-b>', [[<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'gp', [[<cmd>lua require'lspsaga.provider'.preview_definition()<CR>]], { noremap = true, silent = true })
+
+-- Formatter.nvim
+local function prettierFormatter()
+  return {
+    exe = "./node_modules/.bin/prettier",
+    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+    stdin = true
+  }
+end
+require('formatter').setup({
+  logging = true,
+  filetype = {
+    javascript = { prettierFormatter },
+    typescript = { prettierFormatter },
+    css = { prettierFormatter },
+    less = { prettierFormatter },
+    yaml = { prettierFormatter },
+    json = { prettierFormatter },
+    markdown = { prettierFormatter },
+    html = { prettierFormatter },
+    lua = {
+        -- stylua
+        function()
+          return {
+            exe = "stylua",
+            args = {"--stdin"},
+            stdin = true
+          }
+        end
+    },
+  }
+})
+map('n', '<leader>fm', [[<CMD>Format<CR>]], opts)
