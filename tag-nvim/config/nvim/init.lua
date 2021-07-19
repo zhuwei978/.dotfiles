@@ -23,7 +23,6 @@ require('packer').startup(function()
   use 'mattn/emmet-vim'
   use 'editorconfig/editorconfig-vim'
   use 'lukas-reineke/indent-blankline.nvim'
-  use 'mhartington/formatter.nvim'
   use 'tpope/vim-surround'
   use 'windwp/nvim-autopairs'
   use 'glepnir/lspsaga.nvim'
@@ -232,7 +231,7 @@ local on_attach = function(client, bufnr)
     [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]],
     opts
   )
-  -- vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
@@ -276,33 +275,34 @@ local function make_config()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
   -- Completion kinds
-  local icons = {
-    Class = ' ',
-    Color = ' ',
-    Constant = ' ',
-    Constructor = ' ',
-    Enum = '了 ',
-    EnumMember = ' ',
-    Field = ' ',
-    File = ' ',
-    Folder = ' ',
-    Function = ' ',
-    Interface = 'ﰮ ',
-    Keyword = ' ',
-    Method = 'ƒ ',
-    Module = ' ',
-    Property = ' ',
-    Snippet = '﬌ ',
-    Struct = ' ',
-    Text = ' ',
-    Unit = ' ',
-    Value = ' ',
-    Variable = ' ',
+  vim.lsp.protocol.CompletionItemKind = {
+    " [text]",
+    " [method]",
+    " [function]",
+    " [constructor]",
+    "ﰠ [field]",
+    " [variable]",
+    " [class]",
+    " [interface]",
+    " [module]",
+    " [property]",
+    " [unit]",
+    " [value]",
+    " [enum]",
+    " [key]",
+    "﬌ [snippet]",
+    " [color]",
+    " [file]",
+    " [reference]",
+    " [folder]",
+    " [enum member]",
+    " [constant]",
+    " [struct]",
+    "⌘ [event]",
+    " [operator]",
+    " [type]",
   }
-  local kinds = vim.lsp.protocol.CompletionItemKind
-  for i, kind in ipairs(kinds) do
-    kinds[i] = icons[kind] or kind
-  end
+
   return {
     -- enable snippet support
     capabilities = capabilities,
@@ -319,6 +319,7 @@ local function setup_servers()
   local servers = require('lspinstall').installed_servers()
 
   for _, server in pairs(servers) do
+    local util = require 'lspconfig/util'
     local config = make_config()
 
     -- language specific config
@@ -328,12 +329,36 @@ local function setup_servers()
         if fname:match 'lush_theme' ~= nil then
           return nil
         end
-        local util = require 'lspconfig/util'
         return util.find_git_ancestor(fname) or util.path.dirname(fname)
       end
     end
-    if server == 'diagnosticls' then
-      config = vim.tbl_extend('force', config, require 'diagnosticls')
+
+    local eslint = {
+      lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+      lintStdin = true,
+      lintFormats = {"%f:%l:%c: %m"},
+      lintIgnoreExitCode = true,
+      formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+      formatStdin = true,
+    }
+
+    if server == 'efm' then
+      config.init_options = {documentFormatting = true}
+      config.filetypes = {'javascript', 'typescript', 'javascriptreact', 'typescriptreact'}
+      config.root_dir = function (fname)
+        return util.root_pattern("tsconfig.json")(fname) or
+          util.root_pattern(".eslintrc.js", ".eslintrc", ".eslintrc.json", ".git")(fname)
+      end
+      config.settings = {
+        rootMarkers = {".eslintrc.js",".eslintrc",".eslintrc.json", ".git"},
+        languages = {
+          javascript = {eslint},
+          typescript = {eslint},
+          javascriptreact = {eslint},
+          typescriptreact = {eslint},
+          json = {eslint},
+        }
+      }
     end
     if server == 'vim' then
       config.init_options = { isNeovim = true }
@@ -597,41 +622,6 @@ vim.api.nvim_set_keymap(
   [[<cmd>lua require'lspsaga.provider'.preview_definition()<CR>]],
   { noremap = true, silent = true }
 )
-
--- Formatter.nvim
-local function prettierFormatter()
-  return {
-    exe = './node_modules/.bin/prettier',
-    args = { '--stdin-filepath', vim.api.nvim_buf_get_name(0) },
-    stdin = true,
-  }
-end
-require('formatter').setup {
-  logging = true,
-  filetype = {
-    javascript = { prettierFormatter },
-    javascriptreact = { prettierFormatter },
-    typescript = { prettierFormatter },
-    typescriptreact = { prettierFormatter },
-    css = { prettierFormatter },
-    less = { prettierFormatter },
-    yaml = { prettierFormatter },
-    json = { prettierFormatter },
-    markdown = { prettierFormatter },
-    html = { prettierFormatter },
-    lua = {
-      -- stylua
-      function()
-        return {
-          exe = 'stylua',
-          args = { '-', vim.api.nvim_buf_get_name(0) },
-          stdin = true,
-        }
-      end,
-    },
-  },
-}
-map('n', '<leader>fm', [[<CMD>Format<CR>]], opts)
 
 -- Indent Blankline
 vim.g.indent_blankline_char = '│'
