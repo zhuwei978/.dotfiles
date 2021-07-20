@@ -17,7 +17,7 @@ vim.opt.sidescrolloff = 5
 -- better searching
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 -- number display in .opt.umn
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -48,5 +48,3 @@ vim.opt.completeopt = 'menuone,noselect,noinsert'
 vim.opt.background = 'dark'
 vim.opt.termguicolors = true
 vim.cmd [[colorscheme dracula]]
-
-

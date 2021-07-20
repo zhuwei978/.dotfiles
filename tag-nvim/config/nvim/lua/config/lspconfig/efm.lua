@@ -19,17 +19,6 @@ local stylua = {
   formatStdin = true
 }
 
-local vint = {
-  -- brew install vint --HEAD
-  lintCommand = "vint -f '{file_path}:{line_number}:{column_number}: {severity}: {description} (see: {reference})' --enable-neovim -",
-  -- stdin needs vint >= 0.4
-  lintStdin = true,
-  lintFormats = { "%f:%l:%c: %trror: %m", "%f:%l:%c: %tarning: %m" }
-}
-
--- brew install yamllint
-local yamllint = { lintCommand = "yamllint -f parsable -", lintStdin = true }
-
 local languages = {
   lua = { stylua },
   javascript = { prettier, eslint },
@@ -38,13 +27,19 @@ local languages = {
   typescriptreact = { prettier, eslint },
   html = { prettier },
   css = { prettier },
-  vim = { vint },
-  yaml = { yamllint, prettier },
-  json = { prettier }
+  less = { prettier },
+  yaml = { prettier },
+  json = { prettier },
+  markdown = { prettier },
 }
 
 return {
   filetypes = vim.tbl_keys(languages),
   init_options = { documentFormatting = true },
-  settings = { rootMarkers = { ".git/" }, languages = languages }
+  settings = { rootMarkers = {".eslintrc.js",".eslintrc",".eslintrc.json", ".git"}, languages = languages },
+  root_dir = function (fname)
+        return util.root_pattern("tsconfig.json")(fname) or
+          util.root_pattern(".eslintrc.js", ".eslintrc", ".eslintrc.json", ".git")(fname)
+      end
+
 }

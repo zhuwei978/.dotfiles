@@ -1,5 +1,6 @@
 require'plugins'
 require'settings'
+require'config'
 
 -- Disable some built-in plugins we don't want
 local disabled_built_ins = {
@@ -37,6 +38,9 @@ vim.api.nvim_set_keymap('n', '<c-l>', '<c-w>l', { noremap = true, silent = true 
 
 vim.api.nvim_set_keymap('n', 'H', '<cmd>vertical resize -10<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'L', '<cmd>vertical resize +10<CR>', { noremap = true, silent = true })
+
+-- Clear Hlsearch
+vim.api.nvim_set_keymap('n', '<leader><leader>', [[<CMD>noh<CR>]], { noremap = true ,silent = true })
 
 -- Highlight on yank
 vim.api.nvim_exec(

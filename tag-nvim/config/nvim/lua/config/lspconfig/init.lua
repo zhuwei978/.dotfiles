@@ -21,7 +21,7 @@ local on_attach = function(client, bufnr)
     [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]],
     opts
   )
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "<Leader>p", [[<cmd>lua vim.lsp.buf.formatting()<CR>]], opts)
 
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
@@ -36,6 +36,9 @@ local on_attach = function(client, bufnr)
       false
     )
   end
+
+  -- vim already has builtin docs
+  if vim.bo.ft ~= "vim" then vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts) end
 end
 
 -- Configure lua language server for neovim development
@@ -59,6 +62,49 @@ local lua_settings = {
     },
   },
 }
+
+-- jsonls settings
+local jsonls_settings = {
+        json = {
+            -- Schemas https://www.schemastore.org
+            schemas = {
+                {
+                    fileMatch = {"package.json"},
+                    url = "https://json.schemastore.org/package.json"
+                }, {
+                    fileMatch = {"tsconfig*.json"},
+                    url = "https://json.schemastore.org/tsconfig.json"
+                }, {
+                    fileMatch = {
+                        ".prettierrc", ".prettierrc.json",
+                        "prettier.config.json"
+                    },
+                    url = "https://json.schemastore.org/prettierrc.json"
+                }, {
+                    fileMatch = {".eslintrc", ".eslintrc.json"},
+                    url = "https://json.schemastore.org/eslintrc.json"
+                }, {
+                    fileMatch = {
+                        ".babelrc", ".babelrc.json", "babel.config.json"
+                    },
+                    url = "https://json.schemastore.org/babelrc.json"
+                },
+                {
+                    fileMatch = {"lerna.json"},
+                    url = "https://json.schemastore.org/lerna.json"
+                }, {
+                    fileMatch = {"now.json", "vercel.json"},
+                    url = "https://json.schemastore.org/now.json"
+                }, {
+                    fileMatch = {
+                        ".stylelintrc", ".stylelintrc.json",
+                        "stylelint.config.json"
+                    },
+                    url = "http://json.schemastore.org/stylelintrc.json"
+                }
+            }
+        }
+    }
 
 -- config that activates keymaps and enables snippet support
 local function make_config()
@@ -123,35 +169,27 @@ local function setup_servers()
       end
     end
 
-    local eslint = {
-      lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
-      lintStdin = true,
-      lintFormats = {"%f:%l:%c: %m"},
-      lintIgnoreExitCode = true,
-      formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
-      formatStdin = true,
-    }
-
-    if server == 'efm' then
-      config.init_options = {documentFormatting = true}
-      config.filetypes = {'javascript', 'typescript', 'javascriptreact', 'typescriptreact'}
-      config.root_dir = function (fname)
-        return util.root_pattern("tsconfig.json")(fname) or
-          util.root_pattern(".eslintrc.js", ".eslintrc", ".eslintrc.json", ".git")(fname)
-      end
-      config.settings = {
-        rootMarkers = {".eslintrc.js",".eslintrc",".eslintrc.json", ".git"},
-        languages = {
-          javascript = {eslint},
-          typescript = {eslint},
-          javascriptreact = {eslint},
-          typescriptreact = {eslint},
-          json = {eslint},
-        }
-      }
+    if server == 'json' then
+      config.settings = jsonls_settings
     end
+
+    if server == "efm" then config = vim.tbl_extend("force", config, require"config.lspconfig.efm") end
+
     if server == 'vim' then
       config.init_options = { isNeovim = true }
+    end
+
+    if server == 'typescript' then
+      config.root_dir = lspconfig.util.root_pattern("tsconfig.json", ".git", 'package.json')
+      local on_attach = function(client, bufnr)
+          -- This makes sure tsserver is not used for formatting (I prefer prettier)
+          client.resolved_capabilities.document_formatting = false
+
+          ts_utils_attach(client)
+          on_attach(client, bufnr)
+      end
+      config.on_attach = on_attach
+      config.settings = {documentFormatting = false}
     end
 
     require('lspconfig')[server].setup(config)
@@ -166,4 +204,5 @@ require('lspinstall').post_install_hook = function()
   vim.cmd 'bufdo e'
 end
 
-
+-- UI just like `:LspInfo` to show which capabilities each attached server has
+vim.api.nvim_command("command! LspCapabilities lua require'lsp-capabilities'()")
