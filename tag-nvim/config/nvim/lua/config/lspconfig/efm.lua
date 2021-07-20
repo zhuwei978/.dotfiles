@@ -1,3 +1,4 @@
+local util = require'lspconfig/util'
 local prettier = {
   -- npm i -g prettier_d_slim
   formatCommand = "prettier_d_slim --stdin --stdin-filepath ${INPUT}",

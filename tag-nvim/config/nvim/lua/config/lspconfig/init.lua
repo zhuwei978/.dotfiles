@@ -1,3 +1,4 @@
+local lspconfig = require'lspconfig'
 -- LSP settings
 local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -181,18 +182,16 @@ local function setup_servers()
 
     if server == 'typescript' then
       config.root_dir = lspconfig.util.root_pattern("tsconfig.json", ".git", 'package.json')
-      local on_attach = function(client, bufnr)
+      config.on_attach = function(client, bufnr)
           -- This makes sure tsserver is not used for formatting (I prefer prettier)
           client.resolved_capabilities.document_formatting = false
 
-          ts_utils_attach(client)
           on_attach(client, bufnr)
       end
-      config.on_attach = on_attach
       config.settings = {documentFormatting = false}
     end
 
-    require('lspconfig')[server].setup(config)
+    lspconfig[server].setup(config)
   end
 end
 
@@ -205,4 +204,4 @@ require('lspinstall').post_install_hook = function()
 end
 
 -- UI just like `:LspInfo` to show which capabilities each attached server has
-vim.api.nvim_command("command! LspCapabilities lua require'lsp-capabilities'()")
+vim.api.nvim_command("command! LspCapabilities lua require'config.lspconfig.lsp-capabilities'()")
